@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import ru.int24.ownbarbershop.config.DefConfig
+import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.nerwork.ServicesNet
 import ru.int24.ownbarbershop.models.netresult.NetResult
 import java.io.IOException
@@ -43,7 +44,8 @@ fun getHeaders(authUser: Boolean): Map<String, String> {
 }
 
 //mapper
-fun ServicesNet.toDomModel(){
-    val a=0
+fun ServicesNet.toDomModel(): List<DomServices> {
+    // Вот здесь надо будет заменить на реальный маппинг
+    throw UninitializedPropertyAccessException()
 }
 
