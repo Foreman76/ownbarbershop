@@ -15,12 +15,17 @@ class NetworkRepositoryImpl(): NetworkRepository {
 
         val headers = getHeaders(false)
 
-        val serviceResponse  = safeApiCall { UseRetrofit.makeRetrofitAPI().getServices(headers = headers,
+        val serviceResponse  = safeApiCall {
+            UseRetrofit.makeRetrofitAPI().getServices(headers = headers,
                         staff_id = param.staff_id, companyid = param.companyid,
-                        datetime = param.datetime, service_ids = param.service_ids)}
+                        datetime = param.datetime, service_ids = param.service_ids)
+        }
 
-        return serviceResponse.
-
+        return when (serviceResponse) {
+            is NetResult.Success -> NetResult.Success(serviceResponse.value.body()?.toDomModel() ?: throw NullPointerException())
+            is NetResult.GenericError -> NetResult.GenericError(code = serviceResponse.code, error = serviceResponse.error)
+            is NetResult.NetworkError -> NetResult.NetworkError
+        }
     }
 
 }
