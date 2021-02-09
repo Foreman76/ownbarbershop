@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width_icon_order">30dp</dimen>
+    <dimen name="height_icon_order">30dp</dimen>
+    <dimen name="marginTop_icon_order">35dp</dimen>
+    <dimen name="marginLeft_icon_order">10dp</dimen>
+    <dimen name="text_size_title_barber">24sp</dimen>
+    <dimen name="text_size_subTitle">24sp</dimen>
+</resources>

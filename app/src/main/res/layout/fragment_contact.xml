@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ContactFragment">
+
+    <ImageView
+        android:id="@+id/map_contact"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:src="@drawable/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_adress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Адрес:"
+        android:textColor="@color/textcolor_yclients"
+        app:layout_constraintBottom_toTopOf="@id/title_phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map_contact" />
+
+    <TextView
+        android:id="@+id/title_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Телефон:"
+        android:textColor="@color/textcolor_yclients"
+        app:layout_constraintBottom_toTopOf="@id/title_time_work"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_adress" />
+
+    <TextView
+        android:id="@+id/title_time_work"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Время работы:"
+        android:textColor="@color/textcolor_yclients"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_phone" />
+
+    <TextView
+        android:id="@+id/value_adress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:text="ул. Герцена, 36"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/title_adress"
+        app:layout_constraintTop_toBottomOf="@+id/map_contact" />
+
+    <TextView
+        android:id="@+id/value_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:text="+7 911 459 16 17"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/title_adress"
+        app:layout_constraintTop_toBottomOf="@+id/value_adress" />
+
+    <TextView
+        android:id="@+id/value_time_work"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:text="пн.-сб.: 10:00-21:00"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/title_adress"
+        app:layout_constraintTop_toBottomOf="@+id/value_phone" />
+
+    <include
+        layout="@layout/fragment_yclients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/value_time_work" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <!--    https://static-maps.yandex.ru/1.x/?l=map&lang=ru_RU&pt=20.530098,54.749829,pm2gnl&scale=1&size=485,240&z=17-->

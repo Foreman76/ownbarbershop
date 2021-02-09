@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ownbarbershop</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textMenuOrder">Запись</string>
+    <string name="textMenuProfile">Профиль</string>
+    <string name="textMenuAbout">О нас</string>
+    <string name="textMenuGoods">Товары</string>
+    <string name="textMenuRecords">Мои записи</string>
+    <string name="title_profile">Меню</string>
+    <string name="title_about">О Компании</string>
+    <string name="title_order">Онлайн-запись</string>
+    <string name="title_records">Мои записи</string>
+    <string name="title_goods">Список товаров</string>
+    <string name="subTitle">OWN Barbershop на Герцена</string>
+    <string name="text_order_btn">Оформить визит</string>
+    <string name="text_order_ordermore">+ Записаться еще</string>
+    <string name="info_slogan">OWN Barbershop — это больше чем место для мужчины желающего привести себя в порядок, мы хотим чтобы наш гость чувствовал себя как дома, "нашел своих". OWN — это место, где все друг друга уважают, понимают и поддерживают.</string>
+    <string name="text_yclients">Работает на YCLIENTS</string>
+    <string name="text_feedback">Оставить отзыв</string>
+    <string name="text1_togglebtn_records">Предстоящие</string>
+    <string name="text2_togglebtn_records">Прошедшие  </string>
+    <string name="text_future_records_warning">У вас нет предстоящих сеансов</string>
+    <string name="text_past_records_warning">У вас нет прошедших сеансов</string>
+</resources>
+
+

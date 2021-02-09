@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/orderFragment">
+
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="ru.int24.ownbarbershop.fragments.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.int24.ownbarbershop.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ru.int24.ownbarbershop.fragments.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="ru.int24.ownbarbershop.fragments.RecordsFragment"
+        android:label="fragment_records"
+        tools:layout="@layout/fragment_records" />
+    <fragment
+        android:id="@+id/goodsFragment"
+        android:name="ru.int24.ownbarbershop.fragments.GoodsFragment"
+        android:label="fragment_goods"
+        tools:layout="@layout/fragment_goods" />
+</navigation>
