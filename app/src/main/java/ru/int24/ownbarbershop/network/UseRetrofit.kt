@@ -2,6 +2,7 @@ package ru.int24.ownbarbershop.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.int24.ownbarbershop.config.DefConfig
 
 class UseRetrofit {
 
@@ -11,7 +12,7 @@ class UseRetrofit {
 
             val myRetrofit = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://api.yclients.com/")
+                    .baseUrl(DefConfig.url)
                     .build()
             return myRetrofit.create(ApiYclients::class.java)
         }

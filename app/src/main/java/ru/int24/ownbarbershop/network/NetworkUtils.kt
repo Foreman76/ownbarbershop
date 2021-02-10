@@ -29,10 +29,13 @@ suspend fun <T> safeApiCall(apiCall: suspend() -> T): NetResult<T>{
 
 }
 
+
+
+
 fun getHeaders(authUser: Boolean): Map<String, String> {
 
     val mapHeaders: Map<String, String>
-    var authString = ""
+    val authString:String
     when (authUser){
         true -> authString = "Bearer ${DefConfig.api}, User ${DefConfig.user_token}"
         else -> authString = "Bearer ${DefConfig.api}"
