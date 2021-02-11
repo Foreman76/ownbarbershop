@@ -8,4 +8,5 @@ interface NetworkRepository {
 
     suspend fun getServices(param: ParamForService): NetResult<List<DomServices>>
 
+    suspend fun getServicesTest(param: ParamForService): NetResult<List<DomServices>>
 }

@@ -49,6 +49,7 @@ fun getHeaders(authUser: Boolean): Map<String, String> {
 //mapper
 fun ServicesNet.toDomModel(): List<DomServices> {
     // Вот здесь надо будет заменить на реальный маппинг
-    throw UninitializedPropertyAccessException()
+   throw UninitializedPropertyAccessException()
+
 }
 
