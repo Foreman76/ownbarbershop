@@ -40,6 +40,7 @@ class NetworkRepositoryImpl(): NetworkRepository {
                     staff_id = param.staff_id, companyid = param.companyid,
                     datetime = param.datetime, service_ids = param.service_ids)}
             return NetResult.Success(resp.body()?.toDomModel() ?: listOf())
+
         } catch (throwable: Throwable) {
             when(throwable){
                 is IOException -> return NetResult.NetworkError

@@ -10,25 +10,57 @@
         android:id="@+id/orderFragment"
         android:name="ru.int24.ownbarbershop.fragments.OrderFragment"
         android:label="fragment_order"
-        tools:layout="@layout/fragment_order" />
+        tools:layout="@layout/fragment_order" >
+        <action
+            android:id="@+id/action_orderFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.int24.ownbarbershop.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="ru.int24.ownbarbershop.fragments.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recordsFragment"
         android:name="ru.int24.ownbarbershop.fragments.RecordsFragment"
         android:label="fragment_records"
-        tools:layout="@layout/fragment_records" />
+        tools:layout="@layout/fragment_records" >
+        <action
+            android:id="@+id/action_recordsFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/goodsFragment"
         android:name="ru.int24.ownbarbershop.fragments.GoodsFragment"
         android:label="fragment_goods"
-        tools:layout="@layout/fragment_goods" />
+        tools:layout="@layout/fragment_goods" >
+        <action
+            android:id="@+id/action_goodsFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/errorFragment"
+        android:name="ru.int24.ownbarbershop.ErrorFragment"
+        android:label="fragment_error"
+        tools:layout="@layout/fragment_error" >
+        <action
+            android:id="@+id/action_errorFragment_to_goodsFragment"
+            app:destination="@id/goodsFragment" />
+        <action
+            android:id="@+id/action_errorFragment_to_orderFragment"
+            app:destination="@+id/orderFragment" />
+    </fragment>
 </navigation>
