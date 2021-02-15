@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import ru.int24.ownbarbershop.`interface`.BarberToolBar
+import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), BarberToolBar {

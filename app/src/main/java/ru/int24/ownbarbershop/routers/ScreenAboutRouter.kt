@@ -3,7 +3,7 @@ package ru.int24.ownbarbershop.routers
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.int24.ownbarbershop.R
-import ru.int24.ownbarbershop.`interface`.ScreenChangeBase
+import ru.int24.ownbarbershop.UiInterface.ScreenChangeBase
 import ru.int24.ownbarbershop.fragments.ContactFragment
 import ru.int24.ownbarbershop.fragments.FeedBackFragment
 import ru.int24.ownbarbershop.fragments.InfoFragment

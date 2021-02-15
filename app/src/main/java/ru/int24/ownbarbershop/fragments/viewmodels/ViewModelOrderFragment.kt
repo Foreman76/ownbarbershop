@@ -7,21 +7,19 @@ import kotlinx.coroutines.launch
 import ru.int24.ownbarbershop.config.DefConfig
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.ParamForService
-import ru.int24.ownbarbershop.models.netresult.NetResult
 import ru.int24.ownbarbershop.repositories.NetworkRepositoryImpl
+import ru.int24.ownbarbershop.utilits.ErrorType
+import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
 
-class ViewModelOrderFragment: ViewModel() {
+class ViewModelOrderFragment: ViewModel(), RemoteErrorEmitter {
 
-    val networkRepositoryImpl = NetworkRepositoryImpl()
+    val networkRepositoryImpl = NetworkRepositoryImpl(this )
     val param: ParamForService  = makeParametersForGetServices()
     fun getServiceVM() {
         viewModelScope.launch(Dispatchers.Main) {
-            val serviceResponse = networkRepositoryImpl.getServices(param)
-            when (serviceResponse) {
-                is NetResult.NetworkError -> dosomthing()
-                is NetResult.GenericError -> showGenericError(serviceResponse.error)
-                is NetResult.Success -> showSuccess(serviceResponse.value)
-            }
+            val listDomServices: List<DomServices>? = networkRepositoryImpl.getServices(param)
+            //check for null
+            val a=0
         }
     }
 
@@ -34,6 +32,15 @@ class ViewModelOrderFragment: ViewModel() {
     fun dosomthing(){}
     fun showGenericError(er:String?){}
     fun showSuccess(value: List<DomServices>) {}
+
+    override fun onError(msg: String) {
+        val a = 0
+    }
+
+    override fun onError(errorType: ErrorType) {
+        val a = 0
+
+    }
 
 
 }

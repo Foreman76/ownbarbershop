@@ -1,4 +1,4 @@
-package ru.int24.ownbarbershop.`interface`
+package ru.int24.ownbarbershop.UiInterface
 
 interface ScreenChangeBase {
 
