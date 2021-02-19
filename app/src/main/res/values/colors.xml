@@ -9,8 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="barberPrimaryVariant">#2c3274</color>
     <color name="barberPrimaryVariant1">#4051b6</color>
+    <color name="barberPrimaryVariantLight">#5462B5</color>
     <color name="barberPrimary">#0000cc</color>
     <color name="barberlightGrey">#ccc</color>
     <color name="textcolor_yclients">#b1b1b1</color>
     <color name="backgroudcolor_yclients">#f9f9f9</color>
+    <color name="price_color">#E41B1B</color>
 </resources>
