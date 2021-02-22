@@ -12,7 +12,7 @@ import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
 
 class NetworkRepositoryImpl(private val emitter: RemoteErrorEmitter): NetworkUtility() ,NetworkRepository {
 
-    override suspend fun getServices(param: ParamForService): List<DomServices>? {
+    override suspend fun getServices(param: ParamForService): MutableList<DomServices>? {
         val headers = getHeaders(false)
 
         val resp = withContext(Dispatchers.Main){ safeApiCall(emitter = emitter){ UseRetrofit.makeRetrofitAPI().getServices(headers = headers,

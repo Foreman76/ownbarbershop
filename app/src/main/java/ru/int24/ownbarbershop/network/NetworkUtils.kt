@@ -23,7 +23,7 @@ fun getHeaders(authUser: Boolean): Map<String, String> {
 }
 
 //mapper ServicesNet.toDomModel()
-fun ServicesNet.toDomModel(): List<DomServices> {
+fun ServicesNet.toDomModel(): MutableList<DomServices> {
 
     val listDomServices = mutableListOf<DomServices>()
     val listGroup: List<Category> = this.data.category
