@@ -41,13 +41,20 @@ fun ServicesNet.toDomModel(): MutableList<DomServices> {
 
         filterCatId.forEach{ v -> listDomServices.add(mapperServiceToDomService(v))}
     }
+    listDomServices.forEach { v ->
+        val position: Int = listDomServices.indexOf(v)
+        v.position = position
+    }
     return listDomServices
 
 }
 
 fun mapperServiceToDomService(model: Services): DomServices {
-    var typeItem = TypeCardService.ItemService()
-    if (model.image.isNotEmpty()){typeItem = TypeCardService.ItemService()}
+    lateinit var typeItem: TypeCardService
+    if (model.image.isNotEmpty()){
+        typeItem = TypeCardService.ImageService()
+    }else typeItem = TypeCardService.ItemService()
+
     return DomServices(
                 id = model.id,
                 title = model.title,
@@ -62,5 +69,6 @@ fun mapperServiceToDomService(model: Services): DomServices {
                 image = model.image,
                 prepaid = model.prepaid,
                 seance_length = model.seance_length,
-                type_card = typeItem)
+                type_card = typeItem
+    )
 }

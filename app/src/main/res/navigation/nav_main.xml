@@ -39,7 +39,11 @@
         android:id="@+id/errorFragment"
         android:name="ru.int24.ownbarbershop.ErrorFragment"
         android:label="fragment_error"
-        tools:layout="@layout/fragment_error" />
+        tools:layout="@layout/fragment_error">
+        <action
+            android:id="@+id/action_errorFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listServiceFragment"
         android:name="ru.int24.ownbarbershop.fragments.ListServiceFragment"
@@ -48,5 +52,8 @@
         <action
             android:id="@+id/action_listServiceFragment_to_errorFragment"
             app:destination="@id/errorFragment" />
+        <action
+            android:id="@+id/action_listServiceFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </fragment>
 </navigation>

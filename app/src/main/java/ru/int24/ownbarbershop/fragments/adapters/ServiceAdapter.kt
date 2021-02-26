@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.int24.ownbarbershop.R
+import ru.int24.ownbarbershop.UiInterface.InterfaceServiceAdapter
 import ru.int24.ownbarbershop.databinding.GroupitemlistserviceBinding
 import ru.int24.ownbarbershop.databinding.ImageitemserviceBinding
 import ru.int24.ownbarbershop.databinding.ItemserviceBinding
@@ -15,17 +16,24 @@ import ru.int24.ownbarbershop.models.domen.TypeCardService
 class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var dataService: MutableList<DomServices> = mutableListOf<DomServices>()
+    private var delegate:InterfaceServiceAdapter? = null
 
-    class ItemViewHolder(itemview: View): RecyclerView.ViewHolder(itemview){
+    fun attachDelegate(click: InterfaceServiceAdapter){
+        delegate = click
+    }
+
+
+    class ItemViewHolder(itemview: View, val myClick: InterfaceServiceAdapter?): RecyclerView.ViewHolder(itemview){
             val binding = ItemserviceBinding.bind(itemView)
-
         fun bind(item: DomServices){
+
             val price_min: String = item.price_min.toString()
             val price_max: String = item.price_max.toString()
             val price: String = "$price_min - $price_max"
             binding.idServiceTitle.text = item.title
             binding.idServicePrice.text = price
 
+            binding.idItemCardService.setOnClickListener { myClick?.handlerClickItemService(item) }
         }
     }
 
@@ -36,7 +44,7 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class ImageViewHolder(itemview: View): RecyclerView.ViewHolder(itemview){
+    class ImageViewHolder(itemview: View, val myClick: InterfaceServiceAdapter?): RecyclerView.ViewHolder(itemview){
         val binding = ImageitemserviceBinding.bind(itemview)
         fun bind(item:DomServices){
             val price_min: String = item.price_min.toString()
@@ -44,7 +52,9 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val price: String = "$price_min - $price_max"
             binding.idServiceTitle.text = item.title
             binding.idServicePrice.text = price
-            Glide.with(itemView.context).load(item.image).into(binding.idIconService)
+            Glide.with(itemView.context).load(item.image).into(binding.idImageService)
+
+            binding.idImageCardService.setOnClickListener { myClick?.handlerClickItemService(item)  }
         }
     }
 
@@ -52,8 +62,8 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
            return when(viewType){
                 2 -> GroupViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.groupitemlistservice,parent,false))
-                3 -> ImageViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.imageitemservice,parent,false))
-               else -> ItemViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.itemservice,parent,false))
+                3 -> ImageViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.imageitemservice,parent,false), delegate)
+               else -> ItemViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.itemservice,parent,false), delegate)
            }
     }
 
@@ -91,4 +101,31 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is ImageViewHolder -> holder.bind(item)
         }
     }
+
+    fun deleteService(position: Int){
+        dataService.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun updateRemoveAdapter(lChoseService: MutableList<DomServices>){
+        lChoseService.forEach{ v ->
+
+            val l = dataService.find { it.id == v.id }
+            if (l !=null){ deleteService(dataService.indexOf(l)) }
+        }
+
+    }
+
+    fun addItemService(item: DomServices){
+        dataService.add(item.position,item)
+        notifyItemInserted(item.position)
+    }
+
+    fun updateAddAdapter(lService: MutableList<DomServices>){
+        lService.forEach{ v->
+            addItemService(v)
+        }
+    }
+
+
 }

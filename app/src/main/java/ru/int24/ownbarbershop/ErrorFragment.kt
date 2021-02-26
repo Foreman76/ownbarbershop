@@ -5,43 +5,49 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ru.int24.ownbarbershop.config.DefConfig
+import ru.int24.ownbarbershop.databinding.FragmentErrorBinding
+import ru.int24.ownbarbershop.routers.CommonRouter
 
 class ErrorFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var errorMessage: String? = null
+    private var _binding: FragmentErrorBinding? = null
+    private val binding get() = _binding!!
+    private val router = CommonRouter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString("ARG_PARAM1")
-            param2 = it.getString("ARG_PARAM2")
+            errorMessage = it.getString(DefConfig.key_error)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_error, container, false)
+
+        _binding = FragmentErrorBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ErrorFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                ErrorFragment().apply {
-                    arguments = Bundle().apply {
-                        putString("ARG_PARAM1", param1)
-                        putString("ARG_PARAM2", param2)
-                    }
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.txtError.text = errorMessage
+        binding.btnError.setOnClickListener { handlerBtnErrorUpdate() }
+
     }
+
+
+    fun handlerBtnErrorUpdate(){
+        router.routeErrorToListService()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+
 }

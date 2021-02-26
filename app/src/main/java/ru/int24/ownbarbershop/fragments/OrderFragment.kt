@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
+import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.databinding.FragmentOrderBinding
 import ru.int24.ownbarbershop.fragments.viewmodels.ViewModelOrderFragment
 import ru.int24.ownbarbershop.routers.CommonRouter
@@ -33,6 +34,11 @@ class OrderFragment : Fragment() {
         binding.idOrderTextService.setOnClickListener{
             router.routeOrderScreenToListServiceScreen()
         }
+        showBottomNavView()
+    }
+
+    fun showBottomNavView(){
+        (activity as HideShowBottomNavView).showBottomNavView()
     }
 
     override fun onDestroyView() {

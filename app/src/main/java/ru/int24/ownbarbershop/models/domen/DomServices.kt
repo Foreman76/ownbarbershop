@@ -15,5 +15,6 @@ data class DomServices(
         val image : String = "",
         val prepaid : String = "",
         val seance_length : Int = 0,
-        val type_card: TypeCardService = TypeCardService.ItemService()
+        val type_card: TypeCardService = TypeCardService.ItemService(),
+        var position: Int = 0
 )

@@ -15,12 +15,17 @@ import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
 
 class VMListService: ViewModel(), RemoteErrorEmitter {
 
-    val networkRepositoryImpl = NetworkRepositoryImpl(this )
+    private val networkRepositoryImpl = NetworkRepositoryImpl(this )
     val param: ParamForService = makeParametersForGetServices()
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> = _isLoading
+    private val _isErrorMessage: MutableLiveData<String> = MutableLiveData()
+    val isErrorMessage:LiveData<String> = _isErrorMessage
+    private val _isShowChose: MutableLiveData<Boolean> = MutableLiveData()
+    val isShowChose:LiveData<Boolean> = _isShowChose
 
     private val listService: MutableLiveData<MutableList<DomServices>?> = MutableLiveData()
+    private val listServiceFromCash: MutableLiveData<MutableList<DomServices>> = MutableLiveData()
 
     fun getServiceVM() {
 
@@ -32,17 +37,27 @@ class VMListService: ViewModel(), RemoteErrorEmitter {
 
     }
 
+    fun getServiceFromCashVM(){
+        viewModelScope.launch(Dispatchers.Main){
+            listServiceFromCash.postValue(mutableListOf())  //Заглушка
+            if (listServiceFromCash.value?.size == 0){ _isShowChose.value = false}
 
+        }
+    }
 
+    fun changeShowChose(flag:Boolean){
+        _isShowChose.value = flag
+    }
 
     fun getService(): LiveData<MutableList<DomServices>?> = listService
+    fun getServiceFromcash(): LiveData<MutableList<DomServices>> = listServiceFromCash
 
     override fun onError(msg: String) {
-        TODO("Not yet implemented")
+        _isErrorMessage.value = msg
     }
 
     override fun onError(errorType: ErrorType) {
-        TODO("Not yet implemented")
+        _isErrorMessage.value = "Ошибка работы с интернет"
     }
 
     fun makeParametersForGetServices(): ParamForService {
