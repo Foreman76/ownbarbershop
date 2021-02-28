@@ -11,7 +11,7 @@ import java.net.SocketTimeoutException
 
 abstract class NetworkUtility {
     companion object {
-        private const val TAG = "NetworkUtility"
+        const val TAG = "NetworkUtility"
         private const val MESSAGE_KEY = "message"
         private const val ERROR_KEY = "error"
     }
@@ -24,7 +24,7 @@ abstract class NetworkUtility {
         }catch (e: Exception){
             withContext(Dispatchers.Main){
                 e.printStackTrace()
-                Log.e("BaseRemoteRepo", "Call error: ${e.localizedMessage}", e.cause)
+                Log.e(TAG, "Call error: ${e.localizedMessage}", e.cause)
                 when(e){
                     is HttpException -> {
                         if(e.code() == 401) emitter.onError(ErrorType.Session_Expired())

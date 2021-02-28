@@ -4,9 +4,9 @@ package ru.int24.ownbarbershop.network
 import ru.int24.ownbarbershop.config.DefConfig
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.TypeCardService
-import ru.int24.ownbarbershop.models.nerwork.Category
-import ru.int24.ownbarbershop.models.nerwork.Services
-import ru.int24.ownbarbershop.models.nerwork.ServicesNet
+import ru.int24.ownbarbershop.models.data.Category
+import ru.int24.ownbarbershop.models.data.Services
+import ru.int24.ownbarbershop.models.data.ServicesNet
 
 fun getHeaders(authUser: Boolean): Map<String, String> {
 

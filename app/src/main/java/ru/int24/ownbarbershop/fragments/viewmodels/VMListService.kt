@@ -9,13 +9,16 @@ import kotlinx.coroutines.launch
 import ru.int24.ownbarbershop.config.DefConfig
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.ParamForService
+import ru.int24.ownbarbershop.repositories.DataBaseRepository
 import ru.int24.ownbarbershop.repositories.NetworkRepositoryImpl
 import ru.int24.ownbarbershop.utilits.ErrorType
 import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
+import javax.inject.Inject
 
-class VMListService: ViewModel(), RemoteErrorEmitter {
+class VMListService @Inject constructor(private val networkRepositoryImpl: NetworkRepositoryImpl) : ViewModel(), RemoteErrorEmitter {
 
-    private val networkRepositoryImpl = NetworkRepositoryImpl(this )
+//    private val networkRepositoryImpl = NetworkRepositoryImpl()
+
     val param: ParamForService = makeParametersForGetServices()
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -23,6 +26,7 @@ class VMListService: ViewModel(), RemoteErrorEmitter {
     val isErrorMessage:LiveData<String> = _isErrorMessage
     private val _isShowChose: MutableLiveData<Boolean> = MutableLiveData()
     val isShowChose:LiveData<Boolean> = _isShowChose
+    private lateinit var dataBaseRepository: DataBaseRepository
 
     private val listService: MutableLiveData<MutableList<DomServices>?> = MutableLiveData()
     private val listServiceFromCash: MutableLiveData<MutableList<DomServices>> = MutableLiveData()
@@ -31,8 +35,9 @@ class VMListService: ViewModel(), RemoteErrorEmitter {
 
         viewModelScope.launch(Dispatchers.Main) {
             _isLoading.value = true
-            listService.postValue(networkRepositoryImpl.getServices(param))
+            listService.postValue(networkRepositoryImpl.getServices(param, this@VMListService))
             _isLoading.value = false
+
         }
 
     }
@@ -52,17 +57,17 @@ class VMListService: ViewModel(), RemoteErrorEmitter {
     fun getService(): LiveData<MutableList<DomServices>?> = listService
     fun getServiceFromcash(): LiveData<MutableList<DomServices>> = listServiceFromCash
 
+    fun makeParametersForGetServices(): ParamForService {
+        //Здесь доделать запрос из базы или из преф
+        return ParamForService( null, DefConfig.id,
+            null, null )
+    }
+
     override fun onError(msg: String) {
         _isErrorMessage.value = msg
     }
 
     override fun onError(errorType: ErrorType) {
         _isErrorMessage.value = "Ошибка работы с интернет"
-    }
-
-    fun makeParametersForGetServices(): ParamForService {
-        //Здесь доделать запрос из базы или из преф
-        return ParamForService( null, DefConfig.id,
-            null, null )
     }
 }

@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
@@ -13,16 +14,22 @@ import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.UiInterface.InterfaceChoseServiceAdapter
 import ru.int24.ownbarbershop.UiInterface.InterfaceServiceAdapter
 import ru.int24.ownbarbershop.databinding.FragmentListServiceBinding
+import ru.int24.ownbarbershop.di.App
 import ru.int24.ownbarbershop.fragments.adapters.ServiceAdapter
 import ru.int24.ownbarbershop.fragments.adapters.ServiceChoseAdapter
 import ru.int24.ownbarbershop.fragments.viewmodels.VMListService
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.routers.CommonRouter
+import javax.inject.Inject
 
 
 class ListServiceFragment : Fragment() {
 
-    private val vmListService: VMListService by viewModels()
+   //private val vmListService: VMListService by viewModels()
+
+    @Inject lateinit var modelFactory: ViewModelProvider.Factory
+
+    private lateinit var vmListService: VMListService
     private var _binding: FragmentListServiceBinding? = null
     private val binding get() = _binding!!
     private val serviceAdapter = ServiceAdapter()
@@ -32,7 +39,9 @@ class ListServiceFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentListServiceBinding.inflate(inflater, container, false)
+        App.appComponent.inject(this@ListServiceFragment)
         val view = binding.root
+        vmListService = ViewModelProviders.of(this, modelFactory)[VMListService::class.java]
         return view
     }
 

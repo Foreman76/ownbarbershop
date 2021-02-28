@@ -117,8 +117,18 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun addItemService(item: DomServices){
-        dataService.add(item.position,item)
-        notifyItemInserted(item.position)
+
+        val countListGroup = dataService.count{ it.category_id == item.category_id}
+
+        if (countListGroup >= item.position){
+            dataService.add(item.position,item)
+            notifyItemInserted(item.position)
+        }else{
+            dataService.add(countListGroup,item)
+            notifyItemInserted(countListGroup)
+        }
+
+
     }
 
     fun updateAddAdapter(lService: MutableList<DomServices>){

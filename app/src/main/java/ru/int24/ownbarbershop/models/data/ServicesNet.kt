@@ -1,4 +1,4 @@
-package ru.int24.ownbarbershop.models.nerwork
+package ru.int24.ownbarbershop.models.data
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

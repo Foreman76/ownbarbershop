@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.int24.ownbarbershop.models.nerwork.ServicesNet
+import ru.int24.ownbarbershop.models.data.ServicesNet
 
 interface ApiYclients {
 
