@@ -13,7 +13,7 @@
             android:layout_marginLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/barberPrimaryVariant1"
             android:text="@string/title_service_item"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"

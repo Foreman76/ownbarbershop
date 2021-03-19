@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_about.*
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.databinding.FragmentAboutBinding
@@ -37,7 +36,7 @@ class AboutFragment : Fragment() {
         loadLogo()
 
 
-        toggle_button_group.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
+        binding.toggleButtonGroup.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
 
             if (isChecked) {
                 router.changeScreen(checkedId)

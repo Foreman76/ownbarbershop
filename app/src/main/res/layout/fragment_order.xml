@@ -60,24 +60,41 @@
                         android:src="@drawable/ic_baseline_groups_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/id_order_text_stuff"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="@string/text_staff_OrderFragment"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/id_stuff_icon_delete"
+                        app:layout_constraintStart_toEndOf="@id/id_stuff_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/id_order_list_text_staff"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:gravity="center_vertical"
                         android:padding="5dp"
-                        android:text="Сотрудник"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/id_stuff_icon_delete"
                         app:layout_constraintStart_toEndOf="@id/id_stuff_icon"
-                        app:layout_constraintTop_toTopOf="parent" />
-
+                        app:layout_constraintTop_toBottomOf="@id/id_order_text_stuff"
+                        android:visibility="gone"/>
                     <ImageView
                         android:id="@+id/id_stuff_icon_delete"
                         android:layout_width="@dimen/width_icon_order"
@@ -88,7 +105,8 @@
                         android:src="@drawable/ic_baseline_delete_outline_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="gone"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -125,18 +143,35 @@
                     <TextView
                         android:id="@+id/id_order_text_service"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="@string/text_service_OrderFragment"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toTopOf="@id/id_order_list_text_service"
+                        app:layout_constraintEnd_toStartOf="@id/id_service_icon_delete"
+                        app:layout_constraintStart_toEndOf="@id/id_service_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/id_order_list_text_service"
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:gravity="center_vertical"
                         android:padding="5dp"
-                        android:text="Услуга"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/id_service_icon_delete"
                         app:layout_constraintStart_toEndOf="@id/id_service_icon"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/id_order_text_service"
+                        android:visibility="gone"/>
 
                     <ImageView
                         android:id="@+id/id_service_icon_delete"
@@ -148,7 +183,8 @@
                         android:src="@drawable/ic_baseline_delete_outline_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="gone"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -190,10 +226,9 @@
                         android:layout_marginEnd="10dp"
                         android:gravity="center_vertical"
                         android:padding="5dp"
-                        android:text="Дата и время"
+                        android:text="@string/text_time_OrderFragment"
                         android:textColor="@color/black"
-
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/id_time_icon_delete"
                         app:layout_constraintStart_toEndOf="@id/id_time_icon"
@@ -209,7 +244,8 @@
                         android:src="@drawable/ic_baseline_delete_outline_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="gone"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

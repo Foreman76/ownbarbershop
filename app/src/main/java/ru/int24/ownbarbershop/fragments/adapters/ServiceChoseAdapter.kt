@@ -11,7 +11,7 @@ import ru.int24.ownbarbershop.models.domen.DomServices
 
 class ServiceChoseAdapter: RecyclerView.Adapter<ServiceChoseAdapter.ChoseServiceViewHolder>() {
 
-    private var choseService: MutableList<DomServices> = mutableListOf<DomServices>()
+    private var choseService: MutableList<DomServices> = mutableListOf()
     private var delegate: InterfaceChoseServiceAdapter? = null
 
     fun attachDelegate(click: InterfaceChoseServiceAdapter){

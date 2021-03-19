@@ -1,0 +1,49 @@
+package ru.int24.ownbarbershop.repositories
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import ru.int24.ownbarbershop.dao.UseDataBase
+import ru.int24.ownbarbershop.models.db.DBService
+import ru.int24.ownbarbershop.models.db.DBStaff
+import javax.inject.Inject
+
+class DataBaseRepositoryImpl @Inject constructor(private val useDataBase: UseDataBase): BaseRepository{
+
+    private val baseDao = useDataBase.baseDao()
+
+    override suspend fun getAllService(): MutableList<DBService> {
+        return withContext(Dispatchers.IO){ baseDao.getAllService() }
+    }
+
+    override suspend fun addService(service: DBService) {
+        withContext(Dispatchers.IO){ baseDao.addService(service)}
+    }
+
+    override suspend fun deleteService(service: DBService) {
+        withContext(Dispatchers.IO){ baseDao.deleteService(service) }
+    }
+
+    override suspend fun deleteServices(listServices: MutableList<DBService>) {
+        withContext(Dispatchers.IO){ baseDao.deleteServices(listServices)}
+    }
+
+    override suspend fun deleteStaff(staff: DBStaff) {
+        withContext(Dispatchers.IO) {baseDao.deleteStaff(staff)}
+    }
+
+    override suspend fun addStaff(staff: DBStaff) {
+       withContext(Dispatchers.IO) {baseDao.addStaff(staff)}
+    }
+
+    override suspend fun getAllStaff(): DBStaff {
+        return withContext(Dispatchers.IO) {baseDao.getAllStaff()}
+    }
+
+    override suspend fun deleteAllStaff() {
+        withContext(Dispatchers.IO) {baseDao.deleteAllStaff()}
+    }
+
+
+}
+
+

@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_orderFragment_to_listServiceFragment"
             app:destination="@id/listServiceFragment" />
+        <action
+            android:id="@+id/action_orderFragment_to_staffListFragment"
+            app:destination="@id/staffListFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -55,5 +58,26 @@
         <action
             android:id="@+id/action_listServiceFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/staffListFragment"
+        android:name="ru.int24.ownbarbershop.fragments.StaffListFragment"
+        android:label="fragment_staff_list"
+        tools:layout="@layout/fragment_staff_list" >
+        <action
+            android:id="@+id/action_staffListFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_staffListFragment_to_detailStaffFragment"
+            app:destination="@id/detailStaffFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailStaffFragment"
+        android:name="ru.int24.ownbarbershop.fragments.DetailStaffFragment"
+        android:label="fragment_detail_staff"
+        tools:layout="@layout/fragment_detail_staff" >
+        <action
+            android:id="@+id/action_detailStaffFragment_to_staffListFragment"
+            app:destination="@id/staffListFragment" />
     </fragment>
 </navigation>

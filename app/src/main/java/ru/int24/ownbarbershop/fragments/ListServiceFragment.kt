@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
@@ -20,12 +19,11 @@ import ru.int24.ownbarbershop.fragments.adapters.ServiceChoseAdapter
 import ru.int24.ownbarbershop.fragments.viewmodels.VMListService
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.routers.CommonRouter
+import ru.int24.ownbarbershop.utilits.ProgressIndicator
 import javax.inject.Inject
 
 
 class ListServiceFragment : Fragment() {
-
-   //private val vmListService: VMListService by viewModels()
 
     @Inject lateinit var modelFactory: ViewModelProvider.Factory
 
@@ -41,14 +39,14 @@ class ListServiceFragment : Fragment() {
         _binding = FragmentListServiceBinding.inflate(inflater, container, false)
         App.appComponent.inject(this@ListServiceFragment)
         val view = binding.root
-        vmListService = ViewModelProviders.of(this, modelFactory)[VMListService::class.java]
+        vmListService = ViewModelProvider(this, modelFactory).get(VMListService::class.java)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as BarberToolBar).setToolBarTitle(getString(R.string.title_listService))
-        vmListService.isLoading.observe(viewLifecycleOwner, { HideShowProgress(it)})
+        vmListService.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idServiceLoader)})
         vmListService.getService().observe(viewLifecycleOwner, {serviceAdapter.refreshAdapter(it)})
         vmListService.isErrorMessage.observe(viewLifecycleOwner, {router.routeListServiceToErrorScreen(it)})
         vmListService.isShowChose.observe(viewLifecycleOwner, {refreshShose(it)})
@@ -80,12 +78,6 @@ class ListServiceFragment : Fragment() {
         (activity as HideShowBottomNavView).hideBottomNavView()
     }
 
-    fun HideShowProgress(progress: Boolean){
-        when(progress){
-            true -> binding.idServiceLoader.visibility = View.VISIBLE
-            false -> binding.idServiceLoader.visibility = View.GONE
-        }
-    }
 
     fun showChoseListService(){
         binding.idRcChoseService.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -111,6 +103,7 @@ class ListServiceFragment : Fragment() {
                 serviceAdapter.updateRemoveAdapter(lService)
                 serviceChoseAdapter.updateAddAdapter(lService)
                 vmListService.changeShowChose(true)
+                vmListService.addService(item)
                 setChosePrice()
             }
         })
@@ -124,6 +117,7 @@ class ListServiceFragment : Fragment() {
                 serviceAdapter.updateAddAdapter(lService)
                 serviceChoseAdapter.updateRemoveAdapter(lService)
                 if(serviceChoseAdapter.getCountData() == 0){vmListService.changeShowChose(false)}
+                vmListService.deleteServiceVM(item)
                 setChosePrice()
             }
         })

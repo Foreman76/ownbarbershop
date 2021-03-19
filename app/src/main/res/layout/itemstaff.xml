@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/id_item_cardStaff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:foregroundTint="@color/backgroudcolor_yclients">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/id_staff_avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:adjustViewBounds="true"
+            android:scaleType="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/id_barrier"/>
+        <TextView
+            android:id="@+id/id_staff_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Данила мастер"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/id_staff_avatar"
+            app:layout_constraintEnd_toStartOf="@id/id_staff_info"
+            app:layout_constraintBottom_toTopOf="@id/id_staff_spec"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/id_staff_spec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Барбер"
+            app:layout_constraintTop_toBottomOf="@id/id_staff_name"
+            app:layout_constraintStart_toEndOf="@id/id_staff_avatar"
+            app:layout_constraintEnd_toStartOf="@id/id_staff_info"
+            android:textColor="@color/textcolor_yclients"
+            android:textStyle="normal"
+            android:textSize="18sp"
+            android:padding="5dp"
+            android:layout_marginLeft="20dp"/>
+
+        <ImageView
+            android:id="@+id/id_staff_info"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_outline_error_outline_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/id_barrier"
+            android:layout_marginRight="5dp"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/id_barrier"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:constraint_referenced_ids="id_staff_avatar, id_staff_info, id_staff_name,id_staff_spec"
+            android:orientation="vertical"
+            app:barrierDirection="bottom"/>
+        <View
+            android:id="@+id/id_staff_divider"
+            style="@style/Divider.Horizontal"
+            app:layout_constraintTop_toBottomOf="@id/id_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <RatingBar
+            android:id="@+id/id_staff_ratingBar_default"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:theme="@style/MyRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/id_staff_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+           android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/id_staff_icon_comment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_comment_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_staff_divider"
+            android:layout_marginRight="40dp"/>
+        <TextView
+            android:id="@+id/id_staff_value_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="(7)"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_staff_divider"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:id="@+id/id_staff_value_raiting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="(7)"
+           app:layout_constraintStart_toEndOf="@id/id_staff_ratingBar_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_staff_divider"
+            android:layout_marginLeft="10dp"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -30,6 +30,11 @@
     <string name="text_error_onErrorFragment">Здесь будет текст ошибки</string>
     <string name="text_totalcount_service">Выбрано()</string>
     <string name="text_btn_continue_listService">Продолжить</string>
+    <string name="text_service_OrderFragment">Услуги</string>
+    <string name="text_error_network">Ошибка работы с интернет</string>
+    <string name="text_staff_OrderFragment">Сотрудник</string>
+    <string name="text_time_OrderFragment">Дата и время</string>
+    <string name="text_detail_Staff_fragment">Информация</string>
 </resources>
 
 
