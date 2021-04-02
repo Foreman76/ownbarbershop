@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.int24.ownbarbershop.R
-import ru.int24.ownbarbershop.UiInterface.BarberToolBar
-import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
-import ru.int24.ownbarbershop.UiInterface.InterfaceChoseServiceAdapter
-import ru.int24.ownbarbershop.UiInterface.InterfaceServiceAdapter
+import ru.int24.ownbarbershop.UiInterface.*
 import ru.int24.ownbarbershop.databinding.FragmentListServiceBinding
 import ru.int24.ownbarbershop.di.App
 import ru.int24.ownbarbershop.fragments.adapters.ServiceAdapter
@@ -26,12 +23,13 @@ import javax.inject.Inject
 class ListServiceFragment : Fragment() {
 
     @Inject lateinit var modelFactory: ViewModelProvider.Factory
+    @Inject lateinit var serviceAdapter: ServiceAdapter
+    @Inject lateinit var serviceChoseAdapter: ServiceChoseAdapter
 
     private lateinit var vmListService: VMListService
     private var _binding: FragmentListServiceBinding? = null
     private val binding get() = _binding!!
-    private val serviceAdapter = ServiceAdapter()
-    private val serviceChoseAdapter = ServiceChoseAdapter()
+
     private val router = CommonRouter(this)
 
 
@@ -53,6 +51,8 @@ class ListServiceFragment : Fragment() {
 
 
         binding.idBtnServiceContinue.setOnClickListener{ router.routeListServiceScreenToOrderScreen() }
+        (activity as ArrowBack).hideShowArrowBack(false)
+        (activity as ArrowBack).handlerOnClick(){router.routeListServiceScreenToOrderScreen()}
 
         showListService()
         hideBottomNavView()

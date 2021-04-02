@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.InterfaceStaffAdapter
 import ru.int24.ownbarbershop.databinding.ItemstaffBinding
 import ru.int24.ownbarbershop.models.domen.DomStaff
+import javax.inject.Inject
 
-class StaffAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StaffAdapter @Inject constructor(private val myPicasso: Picasso): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private val listStaff: MutableList<DomStaff> = mutableListOf()
     private var delegate: InterfaceStaffAdapter? = null
 
@@ -18,7 +20,7 @@ class StaffAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         delegate = myClick
     }
 
-    class StaffViewHolder(itemview:View, private val myClick: InterfaceStaffAdapter?): RecyclerView.ViewHolder(itemview){
+    class StaffViewHolder(itemview:View, private val myClick: InterfaceStaffAdapter?, private val picasso: Picasso): RecyclerView.ViewHolder(itemview){
         val binding = ItemstaffBinding.bind(itemView)
 
         fun bind(item: DomStaff){
@@ -26,8 +28,6 @@ class StaffAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 true -> bindingStaffAvailability(item)
                 false -> bindingStaffNotAvailability(item)
             }
-
-
         }
 
         private fun bindingStaffNotAvailability(item: DomStaff) {
@@ -39,7 +39,7 @@ class StaffAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.idStaffSpec.text = item.specialization
             binding.idStaffValueComment.text = comments
             binding.idStaffValueRaiting.text = raiting
-            Glide.with(itemView.context).load(item.avatar).circleCrop().into(binding.idStaffAvatar)
+            picasso.load(item.avatar).placeholder(R.drawable.placeholder_avatar).into(binding.idStaffAvatar)
 
         }
 
@@ -52,7 +52,7 @@ class StaffAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.idStaffValueComment.text = comments
             binding.idStaffValueRaiting.text = raiting
             binding.idStaffRatingBarDefault.rating = 3F
-            Glide.with(itemView.context).load(item.avatar).circleCrop().into(binding.idStaffAvatar)
+            picasso.load(item.avatar).placeholder(R.drawable.placeholder_avatar).into(binding.idStaffAvatar)
             binding.idItemCardStaff.setOnClickListener { myClick?.chooseStaff(item) }
             binding.idStaffInfo.setOnClickListener { myClick?.showInfo(item) }
         }
@@ -60,7 +60,7 @@ class StaffAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return StaffAdapter.StaffViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.itemstaff, parent, false), delegate)
+        return StaffAdapter.StaffViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.itemstaff, parent, false), delegate, myPicasso)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

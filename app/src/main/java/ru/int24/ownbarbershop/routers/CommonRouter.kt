@@ -10,7 +10,11 @@ import ru.int24.ownbarbershop.models.domen.DomStaff
 
 interface RouteErrorScreen{
     fun routeListServiceToErrorScreen(errormessage: String)
-    fun routeErrorToListService()
+    fun routeListStaffToErrorScreen(errormessage: String)
+    fun routeDateTimeFragmentToErrorScreen(errormessage: String)
+
+
+    fun routeErrorToOrderfragment()
 
 }
 
@@ -21,10 +25,12 @@ interface CommonRouteLogic{
     fun routeListStaffScreenToOrderScreen()
     fun routeStaffListFragmentToDetailStaffFragment(staff:DomStaff)
     fun routeDetailStaffFragmentToListStaffFragment()
+    fun routeOrderScreenToDateTimeScreen()
+    fun routeDateTimeScreenToOrderScreen()
 }
 
 class CommonRouter(private val fragment: Fragment): RouteErrorScreen, CommonRouteLogic {
-    override fun routeErrorToListService() {
+    override fun routeErrorToOrderfragment() {
         fragment.apply { findNavController().navigate(R.id.action_errorFragment_to_orderFragment) }
     }
 
@@ -37,10 +43,28 @@ class CommonRouter(private val fragment: Fragment): RouteErrorScreen, CommonRout
         fragment.apply { findNavController().navigate(R.id.action_detailStaffFragment_to_staffListFragment) }
     }
 
-    private val key_error:String = DefConfig.key_error
+    override fun routeOrderScreenToDateTimeScreen() {
+        fragment.apply { findNavController().navigate(R.id.action_orderFragment_to_dateTimeFragment) }
+    }
+
+    override fun routeDateTimeScreenToOrderScreen() {
+        fragment.apply { findNavController().navigate(R.id.action_dateTimeFragment_to_orderFragment) }
+    }
+
+
     override fun routeListServiceToErrorScreen(errormessage: String) {
-        val bundle = bundleOf(key_error to errormessage)
+        val bundle = bundleOf(DefConfig.key_error to errormessage)
         fragment.apply { findNavController().navigate(R.id.action_listServiceFragment_to_errorFragment, bundle) }
+    }
+
+    override fun routeListStaffToErrorScreen(errormessage: String) {
+        val bundle = bundleOf(DefConfig.key_error to errormessage)
+        fragment.apply { findNavController().navigate(R.id.action_staffListFragment_to_errorFragment, bundle) }
+    }
+
+    override fun routeDateTimeFragmentToErrorScreen(errormessage: String) {
+        val bundle = bundleOf(DefConfig.key_error to errormessage)
+        fragment.apply { findNavController().navigate(R.id.action_dateTimeFragment_to_errorFragment, bundle) }
     }
 
     override fun routeOrderScreenToListServiceScreen() {

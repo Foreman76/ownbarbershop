@@ -2,20 +2,29 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/id_arrow_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|start"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:layout_marginLeft="5dp"
+        android:visibility="gone"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/barber_actionBar_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Test"
+        android:text="dasdaDSasdaDSasdasD"
         android:textColor="@color/white"
         android:textStyle="bold"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         app:elevation="0dp"/>
+
 
 </LinearLayout>

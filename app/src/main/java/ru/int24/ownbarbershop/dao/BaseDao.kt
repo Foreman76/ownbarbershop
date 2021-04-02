@@ -2,6 +2,7 @@ package ru.int24.ownbarbershop.dao
 
 import androidx.room.*
 import ru.int24.ownbarbershop.models.db.DBService
+import ru.int24.ownbarbershop.models.db.DBSession
 import ru.int24.ownbarbershop.models.db.DBStaff
 
 
@@ -33,4 +34,15 @@ interface BaseDao {
 
     @Query("DELETE  from staff")
     suspend fun deleteAllStaff()
+
+//  Блок сеансы
+    @Insert(entity = DBSession::class, onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addSession(session:DBSession)
+
+    @Query("DELETE  from session")
+    suspend fun deleteAllSession()
+
+    @Query("Select * from session")
+    suspend fun getAllSession(): DBSession
+
 }

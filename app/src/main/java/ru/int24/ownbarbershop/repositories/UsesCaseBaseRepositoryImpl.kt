@@ -1,12 +1,10 @@
 package ru.int24.ownbarbershop.repositories
 
 import ru.int24.ownbarbershop.models.db.DBService
+import ru.int24.ownbarbershop.models.db.DBSession
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.DomStaff
-import ru.int24.ownbarbershop.utilits.toDBService
-import ru.int24.ownbarbershop.utilits.toDBStaff
-import ru.int24.ownbarbershop.utilits.toDomService
-import ru.int24.ownbarbershop.utilits.toDomStaff
+import ru.int24.ownbarbershop.utilits.*
 import javax.inject.Inject
 
 class UsesCaseBaseRepositoryImpl @Inject constructor(private val baseRepositoryImpl: DataBaseRepositoryImpl) : UsesCaseBaseRepository {
@@ -47,4 +45,23 @@ class UsesCaseBaseRepositoryImpl @Inject constructor(private val baseRepositoryI
     override suspend fun deleteAllStaff() {
         baseRepositoryImpl.deleteAllStaff()
     }
+
+
+
+    //Работаем с сессиями
+    override suspend fun addSession(session: DBSession) {
+        baseRepositoryImpl.addSession(session)
+    }
+
+    override suspend fun deleteAllSession() {
+       baseRepositoryImpl.deleteAllSession()
+    }
+
+    override suspend fun getAllSession(): String {
+        val dbSession = baseRepositoryImpl.getAllSession()
+        return if (dbSession != null){
+            GetDataFormat.getUserFormatStringDateFromStringDate("yyyy-MM-dd'T'HH:mm:ssZ","dd MMMM yyyy hh:mm",dbSession.datetime)
+        } else ""
+    }
+
 }

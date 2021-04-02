@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.InterfaceServiceAdapter
 import ru.int24.ownbarbershop.databinding.GroupitemlistserviceBinding
@@ -12,8 +12,9 @@ import ru.int24.ownbarbershop.databinding.ImageitemserviceBinding
 import ru.int24.ownbarbershop.databinding.ItemserviceBinding
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.TypeCardService
+import javax.inject.Inject
 
-class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ServiceAdapter @Inject constructor(private val picasso: Picasso): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var dataService: MutableList<DomServices> = mutableListOf<DomServices>()
     private var delegate:InterfaceServiceAdapter? = null
@@ -44,7 +45,7 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class ImageViewHolder(itemview: View, val myClick: InterfaceServiceAdapter?): RecyclerView.ViewHolder(itemview){
+    class ImageViewHolder(itemview: View, val myClick: InterfaceServiceAdapter?, private val picasso: Picasso): RecyclerView.ViewHolder(itemview){
         val binding = ImageitemserviceBinding.bind(itemview)
         fun bind(item:DomServices){
             val price_min: String = item.price_min.toString()
@@ -52,7 +53,7 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val price: String = "$price_min - $price_max"
             binding.idServiceTitle.text = item.title
             binding.idServicePrice.text = price
-            Glide.with(itemView.context).load(item.image).into(binding.idImageService)
+            picasso.load(item.image).into(binding.idImageService)
 
             binding.idImageCardService.setOnClickListener { myClick?.handlerClickItemService(item)  }
         }
@@ -62,7 +63,7 @@ class ServiceAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
            return when(viewType){
                 2 -> GroupViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.groupitemlistservice,parent,false))
-                3 -> ImageViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.imageitemservice,parent,false), delegate)
+                3 -> ImageViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.imageitemservice,parent,false), delegate, picasso)
                else -> ItemViewHolder(itemview = LayoutInflater.from(parent.context).inflate(R.layout.itemservice,parent,false), delegate)
            }
     }

@@ -44,5 +44,19 @@ fun OrderFragment.onBindingStaff(staff: DomStaff?, binding: FragmentOrderBinding
     }else{
        showHidetextStaff(View.GONE, R.drawable.ic_baseline_groups_24)
     }
+}
 
+fun OrderFragment.onBindingSession(stringDate: String , binding: FragmentOrderBinding) {
+
+    fun showHideTextSession(visible:Int, resourceIcon:Int) {
+        binding.idOrderTextTimeChoose.text = stringDate ?: ""
+        binding.idOrderTextTimeChoose.visibility = visible
+        binding.idTimeIconDelete.visibility = visible
+        binding.idTimeIcon.setImageResource(resourceIcon)
+    }
+    if (stringDate.isNotEmpty()) {
+        showHideTextSession(View.VISIBLE, R.drawable.ic_baseline_calendar_today_active_24)
+    }else{
+        showHideTextSession(View.GONE, R.drawable.ic_baseline_calendar_today_24)
+    }
 }

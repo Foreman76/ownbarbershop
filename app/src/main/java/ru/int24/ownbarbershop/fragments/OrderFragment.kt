@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.int24.ownbarbershop.R
+import ru.int24.ownbarbershop.UiInterface.ArrowBack
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.databinding.FragmentOrderBinding
@@ -16,6 +17,7 @@ import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.DomStaff
 import ru.int24.ownbarbershop.routers.CommonRouter
 import ru.int24.ownbarbershop.utilits.onBindingService
+import ru.int24.ownbarbershop.utilits.onBindingSession
 import ru.int24.ownbarbershop.utilits.onBindingStaff
 import javax.inject.Inject
 
@@ -44,16 +46,39 @@ class OrderFragment : Fragment() {
 
         vmOrderFragment.getServiceFromVM().observe(viewLifecycleOwner, {showService(it)})
         vmOrderFragment.getStaffVM().observe(viewLifecycleOwner, {showStaff(it)})
+        vmOrderFragment.getSessionFromVM().observe(viewLifecycleOwner, {showSession(it)})
 
         binding.idService.setOnClickListener{ routeOrderScreenToListServiceScreen() }
         binding.idStaff.setOnClickListener { routeOrderScreenToListStaffScreen() }
+        binding.idTime.setOnClickListener { routeOrderScreenToDateTimeScreen() }
 
 
-        binding.idServiceIconDelete.setOnClickListener { deleteServce() }
+        binding.idServiceIconDelete.setOnClickListener { deleteService() }
         binding.idStuffIconDelete.setOnClickListener { deleteStaff() }
+        binding.idTimeIconDelete.setOnClickListener { deleteSession() }
         showBottomNavView()
+        hideImageArrowBack()
         vmOrderFragment.getServiceFromDBVM()
         vmOrderFragment.getStaffFromDBVM()
+        vmOrderFragment.getSessionFromDBVM()
+
+    }
+
+    private fun deleteSession() {
+        vmOrderFragment.deleteSession()
+    }
+
+    private fun showSession(stringDate: String) {
+        this.onBindingSession(stringDate, binding)
+    }
+
+    private fun routeOrderScreenToDateTimeScreen() {
+        deleteSession()
+        router.routeOrderScreenToDateTimeScreen()
+    }
+
+    private fun hideImageArrowBack() {
+        (activity as ArrowBack).hideShowArrowBack(true)
     }
 
     private fun routeOrderScreenToListStaffScreen() {
@@ -62,7 +87,7 @@ class OrderFragment : Fragment() {
     }
 
     private fun routeOrderScreenToListServiceScreen() {
-        deleteServce()
+        deleteService()
         router.routeOrderScreenToListServiceScreen()
     }
 
@@ -70,7 +95,7 @@ class OrderFragment : Fragment() {
       this.onBindingStaff(staff, binding)
     }
 
-    private fun deleteServce() {
+    private fun deleteService() {
         vmOrderFragment.deleteServices()
     }
 

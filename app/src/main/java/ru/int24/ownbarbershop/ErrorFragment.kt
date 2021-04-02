@@ -41,7 +41,7 @@ class ErrorFragment : Fragment() {
 
 
     fun handlerBtnErrorUpdate(){
-        router.routeErrorToListService()
+        router.routeErrorToOrderfragment()
     }
 
     override fun onDestroy() {

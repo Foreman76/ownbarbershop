@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_detail_staff_scene"
     tools:context=".fragments.DetailStaffFragment">
 
 
@@ -13,57 +13,62 @@
         android:id="@+id/id_image_background_avatar"
         android:layout_width="0dp"
         android:layout_height="200dp"
+        android:layout_margin="10dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/background_avatar_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp"
-        app:shapeAppearanceOverlay="@style/CircularBackground"/>
+        app:shapeAppearanceOverlay="@style/CircularBackground" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/id_image_Avatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="135dp"
         android:scaleType="centerCrop"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
-        app:civ_border_width="5dp"
-        app:civ_border_color="@color/white"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/id_barber_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_image_Avatar"
-        android:textAlignment="center"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/id_barber_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="10dp">
+        app:layout_constraintTop_toBottomOf="@id/id_image_Avatar" />
 
-    <TextView
-        android:id="@+id/id_barber_descrption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/barberPrimaryVariant1"
-        android:textSize="18sp"
-        android:padding="5dp"
-        android:justificationMode="inter_word" />
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_barber_name"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/id_barber_descrption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:padding="5dp"
+            android:textColor="@color/barberPrimaryVariant1"
+            android:textSize="18sp" />
 
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

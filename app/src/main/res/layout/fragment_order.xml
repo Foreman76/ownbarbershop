@@ -221,7 +221,7 @@
                     <TextView
                         android:id="@+id/id_order_text_time"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:gravity="center_vertical"
@@ -229,10 +229,28 @@
                         android:text="@string/text_time_OrderFragment"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/id_order_text_time_choose"
                         app:layout_constraintEnd_toStartOf="@id/id_time_icon_delete"
                         app:layout_constraintStart_toEndOf="@id/id_time_icon"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/id_order_text_time_choose"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="@string/text_time_OrderFragment"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/id_time_icon_delete"
+                        app:layout_constraintStart_toEndOf="@id/id_time_icon"
+                        app:layout_constraintTop_toBottomOf="@id/id_order_text_time"
+                        android:visibility="gone"/>
 
                     <ImageView
                         android:id="@+id/id_time_icon_delete"

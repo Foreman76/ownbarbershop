@@ -30,7 +30,6 @@ class VMListService @Inject constructor(private val networkRepositoryImpl: Netwo
     val isShowChose:LiveData<Boolean> = _isShowChose
 
     private val listService: MutableLiveData<MutableList<DomServices>?> = MutableLiveData()
-    private val listServiceFromCash: MutableLiveData<MutableList<DomServices>> = MutableLiveData()
 
     fun getServiceVM() {
 

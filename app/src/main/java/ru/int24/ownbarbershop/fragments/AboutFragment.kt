@@ -1,11 +1,12 @@
 package ru.int24.ownbarbershop.fragments
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.databinding.FragmentAboutBinding
@@ -45,10 +46,10 @@ class AboutFragment : Fragment() {
     }
 
     fun loadLogo(){
-        Glide.with(requireContext())
-                .load(R.drawable.stndrt_blue)
-                .circleCrop()
-                .into(binding.barberAboutLogo)
+        Picasso.get()
+            .load(R.drawable.stndrt_blue)
+            .into(binding.barberAboutLogo)
+
     }
 
 }

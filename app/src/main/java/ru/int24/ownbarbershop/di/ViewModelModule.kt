@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import ru.int24.ownbarbershop.fragments.viewmodels.VMDetailStaffFragment
-import ru.int24.ownbarbershop.fragments.viewmodels.VMListService
-import ru.int24.ownbarbershop.fragments.viewmodels.VMStaffListFragment
-import ru.int24.ownbarbershop.fragments.viewmodels.ViewModelOrderFragment
+import ru.int24.ownbarbershop.fragments.viewmodels.*
 
 @Module
 abstract class ViewModelModule {
@@ -32,6 +29,10 @@ abstract class ViewModelModule {
     @ViewModelKey(VMDetailStaffFragment::class) // PROVIDE YOUR OWN MODELS HERE
     internal abstract fun bindVMDetailStaffFragment(vmDetailStaffFragment: VMDetailStaffFragment): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMDateTimeFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMDateTimeFragment(vmDateTimeFragment: VMDateTimeFragment): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

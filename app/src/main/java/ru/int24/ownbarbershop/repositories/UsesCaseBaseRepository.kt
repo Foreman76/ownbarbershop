@@ -1,5 +1,6 @@
 package ru.int24.ownbarbershop.repositories
 
+import ru.int24.ownbarbershop.models.db.DBSession
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.DomStaff
 
@@ -21,4 +22,10 @@ interface UsesCaseBaseRepository {
     suspend fun getAllStaff(): DomStaff
 
     suspend fun deleteAllStaff()
+
+    suspend fun addSession(session: DBSession)
+
+    suspend fun deleteAllSession()
+
+    suspend fun getAllSession(): String
 }

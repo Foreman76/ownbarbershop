@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.int24.ownbarbershop.UiInterface.ArrowBack
 import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.UiInterface.InterfaceStaffAdapter
 import ru.int24.ownbarbershop.databinding.FragmentStaffListBinding
@@ -20,13 +21,13 @@ import javax.inject.Inject
 
 class StaffListFragment : Fragment() {
 
-    @Inject
-    lateinit var modelFactory: ViewModelProvider.Factory
+    @Inject lateinit var modelFactory: ViewModelProvider.Factory
+    @Inject lateinit var staffAdapter: StaffAdapter
     private var _binding: FragmentStaffListBinding? = null
     private val binding get() = _binding!!
     private lateinit var vmStaffListFragment: VMStaffListFragment
     private val router = CommonRouter(this)
-    private val staffAdapter: StaffAdapter = StaffAdapter()
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,10 @@ class StaffListFragment : Fragment() {
 
         vmStaffListFragment.getStaffVM().observe(viewLifecycleOwner, { staffAdapter.refreshAdapter(it)})
         vmStaffListFragment.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idStaffLoader)})
+        vmStaffListFragment.isErrorMessage.observe(viewLifecycleOwner){ router.routeListStaffToErrorScreen(it)}
+
+        (activity as ArrowBack).hideShowArrowBack(false)
+        (activity as ArrowBack).handlerOnClick(){router.routeListStaffScreenToOrderScreen()}
         hideBottomNavView()
         showListStaff()
         attachListener()

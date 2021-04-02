@@ -16,6 +16,16 @@ class ViewModelOrderFragment @Inject constructor(private val usesCaseBaseReposit
 
     private val listService: MutableLiveData<MutableList<DomServices>> = MutableLiveData()
     private val staff: MutableLiveData<DomStaff?> = MutableLiveData()
+    private val session: MutableLiveData<String> = MutableLiveData()
+
+
+    fun getSessionFromDBVM() {
+        viewModelScope.launch(Dispatchers.Main) {
+            session.postValue(usesCaseBaseRepositoryImpl.getAllSession())
+        }
+    }
+
+    fun getSessionFromVM(): LiveData<String> = session
 
     fun getServiceFromDBVM(){
         viewModelScope.launch(Dispatchers.Main) {
@@ -38,6 +48,15 @@ class ViewModelOrderFragment @Inject constructor(private val usesCaseBaseReposit
             viewModelScope.launch(Dispatchers.Main) {
                 usesCaseBaseRepositoryImpl.deleteServices(listService.value!!)
                 listService.postValue(mutableListOf())
+            }
+        }
+    }
+
+    fun deleteSession(){
+        session.value?.let {
+            viewModelScope.launch(Dispatchers.Main) {
+                usesCaseBaseRepositoryImpl.deleteAllSession()
+                session.value = ""
             }
         }
     }
