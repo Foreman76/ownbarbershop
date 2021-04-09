@@ -23,6 +23,13 @@ class GetDataFormat {
             return  SimpleDateFormat(pattern, Locale.getDefault()).apply { val timeZone = TimeZone.getTimeZone("UTC")}
         }
 
+        fun getCurrentOffset(): String {
+            val calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"), Locale.getDefault())
+            val currentLocalTime = calendar.getTime()
+            val dateFormat = SimpleDateFormat("Z");
+            val offset = dateFormat.format(currentLocalTime)
+            return offset.removePrefix("+")
+        }
     }
 
 

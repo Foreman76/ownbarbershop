@@ -3,6 +3,7 @@ package ru.int24.ownbarbershop.dao
 import androidx.room.*
 import ru.int24.ownbarbershop.models.db.DBService
 import ru.int24.ownbarbershop.models.db.DBSession
+import ru.int24.ownbarbershop.models.db.DBSettings
 import ru.int24.ownbarbershop.models.db.DBStaff
 
 
@@ -30,7 +31,7 @@ interface BaseDao {
     suspend fun deleteStaff(staff: DBStaff)
 
     @Query("Select * from staff")
-    suspend fun getAllStaff(): DBStaff    // В базе всегда только один сотрудник
+    suspend fun getAllStaff(): DBStaff?    // В базе всегда только один сотрудник
 
     @Query("DELETE  from staff")
     suspend fun deleteAllStaff()
@@ -43,6 +44,16 @@ interface BaseDao {
     suspend fun deleteAllSession()
 
     @Query("Select * from session")
-    suspend fun getAllSession(): DBSession
+    suspend fun getAllSession(): DBSession?
+
+//    Работа с настройками пользователя
+    @Query("Select * from settings")
+    suspend fun getAllSettings(): DBSettings?
+
+    @Insert(entity = DBSettings::class, onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addSettings(dbSettings: DBSettings)
+
+    @Query("DELETE  from settings")
+    suspend fun deleteAllSettings()
 
 }

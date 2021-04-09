@@ -8,7 +8,7 @@ fun getHeaders(authUser: Boolean): Map<String, String> {
     val mapHeaders: Map<String, String>
     val authString:String
     when (authUser){
-        true -> authString = "Bearer ${DefConfig.api}, User ${DefConfig.user_token}"
+        true -> authString = "Bearer ${DefConfig.api}, User ${DefConfig.settings.userToken}"
         else -> authString = "Bearer ${DefConfig.api}"
     }
     mapHeaders = mapOf("Content-type" to "application/json",

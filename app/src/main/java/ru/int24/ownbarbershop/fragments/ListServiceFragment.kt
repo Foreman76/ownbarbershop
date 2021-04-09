@@ -51,8 +51,8 @@ class ListServiceFragment : Fragment() {
 
 
         binding.idBtnServiceContinue.setOnClickListener{ router.routeListServiceScreenToOrderScreen() }
-        (activity as ArrowBack).hideShowArrowBack(false)
-        (activity as ArrowBack).handlerOnClick(){router.routeListServiceScreenToOrderScreen()}
+        (activity as InterfaceArrowBack).hideShowArrowBack(false)
+        (activity as InterfaceArrowBack).handlerOnClick(){router.routeListServiceScreenToOrderScreen()}
 
         showListService()
         hideBottomNavView()

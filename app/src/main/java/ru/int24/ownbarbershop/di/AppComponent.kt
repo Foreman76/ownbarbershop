@@ -1,6 +1,7 @@
 package ru.int24.ownbarbershop.di
 
 import dagger.Component
+import ru.int24.ownbarbershop.MainActivity
 import ru.int24.ownbarbershop.fragments.*
 import ru.int24.ownbarbershop.fragments.adapters.ServiceAdapter
 import ru.int24.ownbarbershop.fragments.adapters.StaffAdapter
@@ -33,5 +34,11 @@ interface AppComponent {
     fun inject (serviceAdapter: ServiceAdapter)
     fun inject (vmDateTimeFragment: VMDateTimeFragment)
     fun inject (dateTimeFragment: DateTimeFragment)
+    fun inject (mainActivity: MainActivity)
+    fun inject (vmMainActivity: VMMainActivity)
+    fun inject (vmAuthFragment: VMAuthFragment)
+    fun inject (authFragment: AuthFragment)
+    fun inject (vmProfileFragment: VMProfileFragment)
+    fun inject (profileFragment: ProfileFragment)
 
 }

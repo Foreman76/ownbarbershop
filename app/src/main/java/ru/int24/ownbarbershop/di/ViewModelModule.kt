@@ -35,6 +35,21 @@ abstract class ViewModelModule {
     internal abstract fun bindVMDateTimeFragment(vmDateTimeFragment: VMDateTimeFragment): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(VMMainActivity::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMMainActivity(vmMainActivity: VMMainActivity): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMProfileFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMProfileFragment(vmProfileFragment: VMProfileFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMAuthFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMAuthFragment(vmAuthFragment: VMAuthFragment): ViewModel
+
+    @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 }

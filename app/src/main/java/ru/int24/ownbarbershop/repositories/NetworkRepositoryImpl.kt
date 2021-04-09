@@ -2,10 +2,7 @@ package ru.int24.ownbarbershop.repositories
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import ru.int24.ownbarbershop.models.domen.DomServices
-import ru.int24.ownbarbershop.models.domen.DomStaff
-import ru.int24.ownbarbershop.models.domen.ParamForService
-import ru.int24.ownbarbershop.models.domen.ParamForStaff
+import ru.int24.ownbarbershop.models.domen.*
 import ru.int24.ownbarbershop.network.ApiYclients
 import ru.int24.ownbarbershop.network.getHeaders
 import ru.int24.ownbarbershop.utilits.NetworkUtility
@@ -30,6 +27,20 @@ class NetworkRepositoryImpl @Inject constructor(private val api: ApiYclients): N
         val resp = withContext(Dispatchers.Main) {safeApiCall(emitter=emitter){api.getStaff(headers = headers,
                 companyid = param.companyid,
         datetime = param.datetime, service_ids = param.service_ids)} }
+        return resp?.body()?.toDomModel()
+    }
+
+    override suspend fun getSession(param: ParamForSession, emitter: RemoteErrorEmitter): MutableList<DomSession>? {
+        val headers = getHeaders(false)
+        val resp = withContext(Dispatchers.Main){safeApiCall(emitter=emitter){api.getSession(headers=headers,
+            companyid = param.companyid, staff_id = param.staff_id, datetime = param.datetime, service_ids = param.service_ids)} }
+        return resp?.body()?.toDomModel()
+    }
+
+    override suspend fun getWorkDays(paramForWorkDays: ParamForWorkDays, emitter: RemoteErrorEmitter): List<String>? {
+        val headers = getHeaders(false)
+        val resp = withContext(Dispatchers.Main){safeApiCall(emitter=emitter){api.getWorkDays(headers = headers,
+        companyid = paramForWorkDays.companyid, staff_id = paramForWorkDays.staff_id, service_ids = paramForWorkDays.service_ids)} }
         return resp?.body()?.toDomModel()
     }
 

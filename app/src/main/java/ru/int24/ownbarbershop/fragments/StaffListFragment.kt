@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.int24.ownbarbershop.UiInterface.ArrowBack
+import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.UiInterface.InterfaceStaffAdapter
 import ru.int24.ownbarbershop.databinding.FragmentStaffListBinding
@@ -47,8 +47,8 @@ class StaffListFragment : Fragment() {
         vmStaffListFragment.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idStaffLoader)})
         vmStaffListFragment.isErrorMessage.observe(viewLifecycleOwner){ router.routeListStaffToErrorScreen(it)}
 
-        (activity as ArrowBack).hideShowArrowBack(false)
-        (activity as ArrowBack).handlerOnClick(){router.routeListStaffScreenToOrderScreen()}
+        (activity as InterfaceArrowBack).hideShowArrowBack(false)
+        (activity as InterfaceArrowBack).handlerOnClick(){router.routeListStaffScreenToOrderScreen()}
         hideBottomNavView()
         showListStaff()
         attachListener()

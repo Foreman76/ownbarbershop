@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.DomStaff
 import ru.int24.ownbarbershop.repositories.UsesCaseBaseRepositoryImpl
+import ru.int24.ownbarbershop.utilits.GetDataFormat
 import javax.inject.Inject
 
 class ViewModelOrderFragment @Inject constructor(private val usesCaseBaseRepositoryImpl: UsesCaseBaseRepositoryImpl): ViewModel(){
@@ -21,7 +22,9 @@ class ViewModelOrderFragment @Inject constructor(private val usesCaseBaseReposit
 
     fun getSessionFromDBVM() {
         viewModelScope.launch(Dispatchers.Main) {
-            session.postValue(usesCaseBaseRepositoryImpl.getAllSession())
+            usesCaseBaseRepositoryImpl.getAllSession()?.let {
+                session.postValue(GetDataFormat.getUserFormatStringDateFromStringDate("yyyy-MM-dd'T'HH:mm:ssZ","dd MMMM yyyy HH:mm",it.datetime))
+            } ?: ""
         }
     }
 

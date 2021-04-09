@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.int24.ownbarbershop.R
-import ru.int24.ownbarbershop.UiInterface.ArrowBack
+import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.databinding.FragmentOrderBinding
@@ -78,7 +78,7 @@ class OrderFragment : Fragment() {
     }
 
     private fun hideImageArrowBack() {
-        (activity as ArrowBack).hideShowArrowBack(true)
+        (activity as InterfaceArrowBack).hideShowArrowBack(true)
     }
 
     private fun routeOrderScreenToListStaffScreen() {

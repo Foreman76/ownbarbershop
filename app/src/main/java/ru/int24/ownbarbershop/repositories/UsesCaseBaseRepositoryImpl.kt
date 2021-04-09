@@ -2,7 +2,10 @@ package ru.int24.ownbarbershop.repositories
 
 import ru.int24.ownbarbershop.models.db.DBService
 import ru.int24.ownbarbershop.models.db.DBSession
+import ru.int24.ownbarbershop.models.db.DBSettings
 import ru.int24.ownbarbershop.models.domen.DomServices
+import ru.int24.ownbarbershop.models.domen.DomSession
+import ru.int24.ownbarbershop.models.domen.DomSettings
 import ru.int24.ownbarbershop.models.domen.DomStaff
 import ru.int24.ownbarbershop.utilits.*
 import javax.inject.Inject
@@ -38,7 +41,7 @@ class UsesCaseBaseRepositoryImpl @Inject constructor(private val baseRepositoryI
        baseRepositoryImpl.addStaff(staff.toDBStaff())
     }
 
-    override suspend fun getAllStaff(): DomStaff {
+    override suspend fun getAllStaff(): DomStaff? {
         return baseRepositoryImpl.getAllStaff()?.toDomStaff()
     }
 
@@ -57,11 +60,24 @@ class UsesCaseBaseRepositoryImpl @Inject constructor(private val baseRepositoryI
        baseRepositoryImpl.deleteAllSession()
     }
 
-    override suspend fun getAllSession(): String {
-        val dbSession = baseRepositoryImpl.getAllSession()
-        return if (dbSession != null){
-            GetDataFormat.getUserFormatStringDateFromStringDate("yyyy-MM-dd'T'HH:mm:ssZ","dd MMMM yyyy hh:mm",dbSession.datetime)
-        } else ""
+    override suspend fun getAllSession(): DomSession? {
+        return baseRepositoryImpl.getAllSession()?.toDomSession()
+    }
+
+//    Работаем с настройками
+
+    override suspend fun getAllSettings(): DomSettings? {
+        return baseRepositoryImpl.getAllSettings()?.toDomModel()
+    }
+
+    override suspend fun addSettings(dbSettings: DBSettings) {
+        baseRepositoryImpl.addSettings(dbSettings)
+    }
+
+    override suspend fun deleteAllSettings() {
+        baseRepositoryImpl.deleteAllSettings()
     }
 
 }
+
+// GetDataFormat.getUserFormatStringDateFromStringDate("yyyy-MM-dd'T'HH:mm:ssZ","dd MMMM yyyy hh:mm",dbSession.datetime)

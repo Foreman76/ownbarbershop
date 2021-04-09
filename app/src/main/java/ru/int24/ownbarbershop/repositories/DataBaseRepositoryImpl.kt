@@ -5,6 +5,7 @@ import kotlinx.coroutines.withContext
 import ru.int24.ownbarbershop.dao.UseDataBase
 import ru.int24.ownbarbershop.models.db.DBService
 import ru.int24.ownbarbershop.models.db.DBSession
+import ru.int24.ownbarbershop.models.db.DBSettings
 import ru.int24.ownbarbershop.models.db.DBStaff
 import javax.inject.Inject
 
@@ -36,7 +37,7 @@ class DataBaseRepositoryImpl @Inject constructor(private val useDataBase: UseDat
        withContext(Dispatchers.IO) {baseDao.addStaff(staff)}
     }
 
-    override suspend fun getAllStaff(): DBStaff {
+    override suspend fun getAllStaff(): DBStaff? {
         return withContext(Dispatchers.IO) {baseDao.getAllStaff()}
     }
 
@@ -52,8 +53,20 @@ class DataBaseRepositoryImpl @Inject constructor(private val useDataBase: UseDat
         withContext(Dispatchers.IO) {baseDao.deleteAllSession()}
     }
 
-    override suspend fun getAllSession(): DBSession {
+    override suspend fun getAllSession(): DBSession? {
         return withContext(Dispatchers.IO) {baseDao.getAllSession()}
+    }
+
+    override suspend fun getAllSettings(): DBSettings? {
+        return withContext(Dispatchers.IO){baseDao.getAllSettings()}
+    }
+
+    override suspend fun addSettings(dbSettings: DBSettings) {
+        withContext(Dispatchers.IO){baseDao.addSettings(dbSettings)}
+    }
+
+    override suspend fun deleteAllSettings() {
+        withContext(Dispatchers.IO){baseDao.deleteAllSettings()}
     }
 
 

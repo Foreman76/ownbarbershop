@@ -2,6 +2,7 @@ package ru.int24.ownbarbershop.repositories
 
 import ru.int24.ownbarbershop.models.db.DBService
 import ru.int24.ownbarbershop.models.db.DBSession
+import ru.int24.ownbarbershop.models.db.DBSettings
 import ru.int24.ownbarbershop.models.db.DBStaff
 
 interface BaseRepository {
@@ -19,7 +20,7 @@ interface BaseRepository {
 
     suspend fun addStaff(staff: DBStaff)
 
-    suspend fun getAllStaff(): DBStaff
+    suspend fun getAllStaff(): DBStaff?
 
     suspend fun deleteAllStaff()
 
@@ -29,6 +30,13 @@ interface BaseRepository {
 
     suspend fun deleteAllSession()
 
-    suspend fun getAllSession(): DBSession
+    suspend fun getAllSession(): DBSession?
 
+//    Блок настройки
+
+    suspend fun getAllSettings(): DBSettings?
+
+    suspend fun addSettings(dbSettings: DBSettings)
+
+    suspend fun deleteAllSettings()
 }

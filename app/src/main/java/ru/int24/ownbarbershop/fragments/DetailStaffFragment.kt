@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import ru.int24.ownbarbershop.R
-import ru.int24.ownbarbershop.UiInterface.ArrowBack
+import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.databinding.FragmentDetailStaffBinding
 import ru.int24.ownbarbershop.di.App
@@ -49,8 +49,8 @@ class DetailStaffFragment : Fragment() {
          binding.idBarberName.text = staff.name
          binding.idBarberDescrption.text = getString(R.string.lorem_test)
          myPicasso.load(staff.avatar).placeholder(R.drawable.placeholder_avatar).into(binding.idImageAvatar)
-        (activity as ArrowBack).hideShowArrowBack(false)
-        (activity as ArrowBack).handlerOnClick(){router.routeDetailStaffFragmentToListStaffFragment()}
+        (activity as InterfaceArrowBack).hideShowArrowBack(false)
+        (activity as InterfaceArrowBack).handlerOnClick(){router.routeDetailStaffFragmentToListStaffFragment()}
 
 
 
