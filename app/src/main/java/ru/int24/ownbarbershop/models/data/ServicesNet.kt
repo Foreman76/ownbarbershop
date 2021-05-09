@@ -10,7 +10,7 @@ data class ServicesNet(
 
         @SerializedName("data")
         @Expose
-        val data : Data,
+        val data : DataNet,
 
 //        @SerializedName("meta")
 //        @Expose
@@ -21,7 +21,7 @@ data class Message (
         val message: String,
         )
 
-data class Data (
+data class DataNet (
 
         @SerializedName("services")
         val services : List<Services>,

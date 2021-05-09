@@ -8,7 +8,7 @@ import ru.int24.ownbarbershop.models.db.DBSettings
 import ru.int24.ownbarbershop.models.db.DBStaff
 
 
-@Database(entities = [DBService::class, DBStaff::class, DBSession::class, DBSettings::class], version = 4, exportSchema = false)
+@Database(entities = [DBService::class, DBStaff::class, DBSession::class, DBSettings::class], version = 6, exportSchema = false)
 abstract class UseDataBase : RoomDatabase() {
 
     abstract fun baseDao(): BaseDao

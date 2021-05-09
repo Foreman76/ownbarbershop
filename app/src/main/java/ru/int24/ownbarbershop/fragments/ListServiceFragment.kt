@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.int24.ownbarbershop.MainActivity
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.*
 import ru.int24.ownbarbershop.databinding.FragmentListServiceBinding
@@ -17,6 +18,7 @@ import ru.int24.ownbarbershop.fragments.viewmodels.VMListService
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.routers.CommonRouter
 import ru.int24.ownbarbershop.utilits.ProgressIndicator
+import ru.int24.ownbarbershop.utilits.initBaseRules
 import javax.inject.Inject
 
 
@@ -32,7 +34,6 @@ class ListServiceFragment : Fragment() {
 
     private val router = CommonRouter(this)
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentListServiceBinding.inflate(inflater, container, false)
         App.appComponent.inject(this@ListServiceFragment)
@@ -44,25 +45,30 @@ class ListServiceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as BarberToolBar).setToolBarTitle(getString(R.string.title_listService))
-        vmListService.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idServiceLoader)})
-        vmListService.getService().observe(viewLifecycleOwner, {serviceAdapter.refreshAdapter(it)})
-        vmListService.isErrorMessage.observe(viewLifecycleOwner, {router.routeListServiceToErrorScreen(it)})
-        vmListService.isShowChose.observe(viewLifecycleOwner, {refreshShose(it)})
+        initObservers()
 
+        serviceChoseAdapter.clearAdapter()
+        binding.idBtnServiceContinue.setOnClickListener{ router.routeFragmentUp()}
 
-        binding.idBtnServiceContinue.setOnClickListener{ router.routeListServiceScreenToOrderScreen() }
-        (activity as InterfaceArrowBack).hideShowArrowBack(false)
-        (activity as InterfaceArrowBack).handlerOnClick(){router.routeListServiceScreenToOrderScreen()}
+        initBaseRules(router, activity as MainActivity)
 
         showListService()
-        hideBottomNavView()
         attachListener()
         attachChoseListener()
 
     }
 
 
-    fun refreshShose(flag:Boolean){
+    private fun initObservers() {
+        vmListService.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idServiceLoader)})
+        vmListService.getService().observe(viewLifecycleOwner, {serviceAdapter.refreshAdapter(it)})
+        vmListService.isErrorMessage.observe(viewLifecycleOwner, {router.routeThisFragmentToErrorScreen(it,
+                R.id.action_listServiceFragment_to_errorFragment)})
+        vmListService.isShowChose.observe(viewLifecycleOwner, {refreshChose(it)})
+    }
+
+
+    fun refreshChose(flag:Boolean){
         when(flag){
             false -> binding.idRcChoseService.visibility = View.GONE
             true -> {
@@ -71,11 +77,6 @@ class ListServiceFragment : Fragment() {
                 showChoseListService()}
             }
         }
-    }
-
-
-    fun hideBottomNavView(){
-        (activity as HideShowBottomNavView).hideBottomNavView()
     }
 
 

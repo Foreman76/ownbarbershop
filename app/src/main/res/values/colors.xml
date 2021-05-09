@@ -15,4 +15,7 @@
     <color name="textcolor_yclients">#b1b1b1</color>
     <color name="backgroudcolor_yclients">#f9f9f9</color>
     <color name="price_color">#E41B1B</color>
+    <color name="background_primary">#F6F5F6</color>
+    <color name="icon_certificate">#B6B5B5</color>
+    <color name="icon_subscription">#8C8B8B</color>
 </resources>

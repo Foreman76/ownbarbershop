@@ -50,6 +50,46 @@ abstract class ViewModelModule {
     internal abstract fun bindVMAuthFragment(vmAuthFragment: VMAuthFragment): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(VMCardsLoyaltyFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMCardsLoyaltyFragment(vmCardsLoyaltyFragment: VMCardsLoyaltyFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMPersonFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMPersonFragment(vmPersonFragment: VMPersonFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMCertificateFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMCertificateFragment(vmCertificateFragment: VMCertificateFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMSubscriptionFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMSubsriptionFragment(vmSubscriptionFragment: VMSubscriptionFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMCreateOrderFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMCreateOrderFragment(vmCreateOrderFragment: VMCreateOrderFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMRecordsFrsgment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMRecordsFragment(vmRecordsFrsgment: VMRecordsFrsgment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMFutureRecordsFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMFutureRecordsFragment(vmFutureRecordsFragment: VMFutureRecordsFragment): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(VMPastRecordsFragment::class) // PROVIDE YOUR OWN MODELS HERE
+    internal abstract fun bindVMPastRecordsFragment(vmPastRecordsFragment: VMPastRecordsFragment): ViewModel
+
+    @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 }

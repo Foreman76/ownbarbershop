@@ -11,18 +11,22 @@ fun DBSettings.toDomModel(): DomSettings {
             smsCode = smsCode,
             userName = userName,
             userToken = userToken,
-            userPassword = userPassword
+            userPassword = userPassword,
+            avatar = avatar,
+            user_id = user_id
     )
 }
 
 fun DomSettings.toDBSettings(): DBSettings{
     return DBSettings(
-            id = 0,
+            id = id,
             userEmail = userEmail,
             phone = phone,
             smsCode = smsCode,
             userName = userName,
             userToken = userToken,
-            userPassword = userPassword
+            userPassword = userPassword,
+            avatar = avatar,
+            user_id = user_id
     )
 }

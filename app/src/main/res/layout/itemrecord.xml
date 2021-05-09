@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/id_record_name_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/barberPrimaryVariant1"
+                android:textStyle="bold"
+                tools:text="@tools:sample/full_names"
+                android:textSize="20sp"
+                android:padding="16dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/title_subforrecord"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/id_record_datetime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/barberPrimaryVariant"
+                tools:text="@tools:sample/date/ddmmyy"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="16dp"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="@drawable/separator"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
+                android:id="@+id/id_record_list_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/barberPrimaryVariant"
+                tools:text="Перечисления услуг"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="16dp"
+                android:textSize="17sp" />
+            <TextView
+                android:id="@+id/id_record_coast_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Стоимость:"
+                android:paddingBottom="5dp"
+                android:paddingLeft="16dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/barberPrimaryVariant1"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="@drawable/separator"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+            <TextView
+                android:id="@+id/id_record_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="16dp"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                tools:text = "@tools:sample/us_phones"/>
+
+            <TextView
+                android:id="@+id/id_record_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                tools:text="http://test.com"/>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

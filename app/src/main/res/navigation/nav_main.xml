@@ -20,12 +20,31 @@
         <action
             android:id="@+id/action_orderFragment_to_dateTimeFragment"
             app:destination="@id/dateTimeFragment" />
+        <action
+            android:id="@+id/action_orderFragment_to_createOrderFragment"
+            app:destination="@id/createOrderFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.int24.ownbarbershop.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_cardsLoyaltyFragment"
+            app:destination="@id/cardsLoyaltyFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_certificateFragment"
+            app:destination="@id/certificateFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_personFragment"
+            app:destination="@id/personFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_subscriptionFragment"
+            app:destination="@id/subscriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="ru.int24.ownbarbershop.fragments.AboutFragment"
@@ -35,12 +54,20 @@
         android:id="@+id/recordsFragment"
         android:name="ru.int24.ownbarbershop.fragments.RecordsFragment"
         android:label="fragment_records"
-        tools:layout="@layout/fragment_records" />
+        tools:layout="@layout/fragment_records" >
+        <action
+            android:id="@+id/action_recordsFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
     <fragment
         android:id="@+id/goodsFragment"
         android:name="ru.int24.ownbarbershop.fragments.GoodsFragment"
         android:label="fragment_goods"
-        tools:layout="@layout/fragment_goods" />
+        tools:layout="@layout/fragment_goods" >
+        <action
+            android:id="@+id/action_goodsFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
     <fragment
         android:id="@+id/errorFragment"
         android:name="ru.int24.ownbarbershop.ErrorFragment"
@@ -58,18 +85,12 @@
         <action
             android:id="@+id/action_listServiceFragment_to_errorFragment"
             app:destination="@id/errorFragment" />
-        <action
-            android:id="@+id/action_listServiceFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
     </fragment>
     <fragment
         android:id="@+id/staffListFragment"
         android:name="ru.int24.ownbarbershop.fragments.StaffListFragment"
         android:label="fragment_staff_list"
         tools:layout="@layout/fragment_staff_list" >
-        <action
-            android:id="@+id/action_staffListFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
         <action
             android:id="@+id/action_staffListFragment_to_detailStaffFragment"
             app:destination="@id/detailStaffFragment" />
@@ -81,21 +102,68 @@
         android:id="@+id/detailStaffFragment"
         android:name="ru.int24.ownbarbershop.fragments.DetailStaffFragment"
         android:label="fragment_detail_staff"
-        tools:layout="@layout/fragment_detail_staff" >
-        <action
-            android:id="@+id/action_detailStaffFragment_to_staffListFragment"
-            app:destination="@id/staffListFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_detail_staff" />
     <fragment
         android:id="@+id/dateTimeFragment"
         android:name="ru.int24.ownbarbershop.fragments.DateTimeFragment"
         android:label="fragment_date_time"
         tools:layout="@layout/fragment_date_time" >
         <action
-            android:id="@+id/action_dateTimeFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
-        <action
             android:id="@+id/action_dateTimeFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="ru.int24.ownbarbershop.fragments.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardsLoyaltyFragment"
+        android:name="ru.int24.ownbarbershop.fragments.CardsLoyaltyFragment"
+        android:label="fragment_cards_loyalty"
+        tools:layout="@layout/fragment_cards_loyalty" >
+        <action
+            android:id="@+id/action_cardsLoyaltyFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/certificateFragment"
+        android:name="ru.int24.ownbarbershop.fragments.CertificateFragment"
+        android:label="fragment_certificate"
+        tools:layout="@layout/fragment_certificate" >
+        <action
+            android:id="@+id/action_certificateFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="ru.int24.ownbarbershop.fragments.PersonFragment"
+        android:label="fragment_person"
+        tools:layout="@layout/fragment_person" >
+        <action
+            android:id="@+id/action_personFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subscriptionFragment"
+        android:name="ru.int24.ownbarbershop.fragments.SubscriptionFragment"
+        android:label="fragment_subscription"
+        tools:layout="@layout/fragment_subscription" >
+        <action
+            android:id="@+id/action_subscriptionFragment_to_errorFragment"
+            app:destination="@id/errorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createOrderFragment"
+        android:name="ru.int24.ownbarbershop.fragments.CreateOrderFragment"
+        android:label="fragment_create_order"
+        tools:layout="@layout/fragment_create_order" >
+        <action
+            android:id="@+id/action_createOrderFragment_to_errorFragment"
             app:destination="@id/errorFragment" />
     </fragment>
 </navigation>

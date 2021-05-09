@@ -8,6 +8,7 @@ object DefConfig {
     const val api: String = BuildConfig.API
     const val url: String = BuildConfig.SERVER_URL
     const val key_error: String = "ru.int24.ownbarbershop.routers.errormessage"
+    const val phone_prefix: Char = '7'
     var settings = DomSettings()
 
 }

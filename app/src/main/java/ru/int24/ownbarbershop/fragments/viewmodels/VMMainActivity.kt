@@ -12,15 +12,16 @@ import javax.inject.Inject
 
 class VMMainActivity @Inject constructor(private val usesCaseBaseRepositoryImpl: UsesCaseBaseRepositoryImpl): ViewModel() {
 
-    private val _isSettingsFromBD: MutableLiveData<DomSettings?> = MutableLiveData()
+    private val _isSettingsFromDB: MutableLiveData<DomSettings?> = MutableLiveData()
+
 
     fun getSettingsFromDB(){
         viewModelScope.launch(Dispatchers.Main) {
-            _isSettingsFromBD.postValue(usesCaseBaseRepositoryImpl.getAllSettings())
+            _isSettingsFromDB.postValue(usesCaseBaseRepositoryImpl.getAllSettings())
         }
     }
 
-    fun getSettingsFromVM(): LiveData<DomSettings?> = _isSettingsFromBD
+    fun getSettingsFromVM(): LiveData<DomSettings?> = _isSettingsFromDB
 
 
 }

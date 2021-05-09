@@ -9,27 +9,25 @@ import ru.int24.ownbarbershop.models.domen.DomStaff
 
 
 interface RouteErrorScreen{
-    fun routeListServiceToErrorScreen(errormessage: String)
-    fun routeListStaffToErrorScreen(errormessage: String)
-    fun routeDateTimeFragmentToErrorScreen(errormessage: String)
 
+    fun routeThisFragmentToErrorScreen(errormessage: String, actionId:Int)
 
     fun routeErrorToOrderfragment()
 
 }
 
 interface CommonRouteLogic{
-    fun routeOrderScreenToListServiceScreen()
-    fun routeListServiceScreenToOrderScreen()
-    fun routeOrderScreenToListStaffScreen()
-    fun routeListStaffScreenToOrderScreen()
+
     fun routeStaffListFragmentToDetailStaffFragment(staff:DomStaff)
-    fun routeDetailStaffFragmentToListStaffFragment()
-    fun routeOrderScreenToDateTimeScreen()
-    fun routeDateTimeScreenToOrderScreen()
+
+    fun routeThisFragmentToAnyFragment(actionId:Int)
+    fun routeFragmentUp()
+//    fun routerFragmentPopBackStack()
+
 }
 
 class CommonRouter(private val fragment: Fragment): RouteErrorScreen, CommonRouteLogic {
+
     override fun routeErrorToOrderfragment() {
         fragment.apply { findNavController().navigate(R.id.action_errorFragment_to_orderFragment) }
     }
@@ -39,48 +37,17 @@ class CommonRouter(private val fragment: Fragment): RouteErrorScreen, CommonRout
         fragment.apply { findNavController().navigate(R.id.action_staffListFragment_to_detailStaffFragment, bundel) }
     }
 
-    override fun routeDetailStaffFragmentToListStaffFragment() {
-        fragment.apply { findNavController().navigate(R.id.action_detailStaffFragment_to_staffListFragment) }
+    override fun routeThisFragmentToAnyFragment(actionId: Int) {
+        fragment.apply { findNavController().navigate(actionId) }
     }
 
-    override fun routeOrderScreenToDateTimeScreen() {
-        fragment.apply { findNavController().navigate(R.id.action_orderFragment_to_dateTimeFragment) }
+    override fun routeFragmentUp() {
+        fragment.apply { findNavController().navigateUp() }
     }
 
-    override fun routeDateTimeScreenToOrderScreen() {
-        fragment.apply { findNavController().navigate(R.id.action_dateTimeFragment_to_orderFragment) }
-    }
-
-
-    override fun routeListServiceToErrorScreen(errormessage: String) {
+    override fun routeThisFragmentToErrorScreen(errormessage: String, actionId: Int) {
         val bundle = bundleOf(DefConfig.key_error to errormessage)
-        fragment.apply { findNavController().navigate(R.id.action_listServiceFragment_to_errorFragment, bundle) }
-    }
-
-    override fun routeListStaffToErrorScreen(errormessage: String) {
-        val bundle = bundleOf(DefConfig.key_error to errormessage)
-        fragment.apply { findNavController().navigate(R.id.action_staffListFragment_to_errorFragment, bundle) }
-    }
-
-    override fun routeDateTimeFragmentToErrorScreen(errormessage: String) {
-        val bundle = bundleOf(DefConfig.key_error to errormessage)
-        fragment.apply { findNavController().navigate(R.id.action_dateTimeFragment_to_errorFragment, bundle) }
-    }
-
-    override fun routeOrderScreenToListServiceScreen() {
-        fragment.apply { findNavController().navigate(R.id.action_orderFragment_to_listServiceFragment) }
-    }
-
-    override fun routeListServiceScreenToOrderScreen() {
-        fragment.apply { findNavController().navigate(R.id.action_listServiceFragment_to_orderFragment) }
-    }
-
-    override fun routeOrderScreenToListStaffScreen() {
-        fragment.apply { findNavController().navigate(R.id.action_orderFragment_to_staffListFragment) }
-    }
-
-    override fun routeListStaffScreenToOrderScreen() {
-        fragment.apply { findNavController().navigate(R.id.action_staffListFragment_to_orderFragment) }
+        fragment.apply { findNavController().navigate(actionId, bundle) }
     }
 
 }

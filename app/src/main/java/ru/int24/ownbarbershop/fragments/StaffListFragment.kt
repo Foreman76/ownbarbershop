@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
-import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
+import ru.int24.ownbarbershop.MainActivity
+import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.InterfaceStaffAdapter
 import ru.int24.ownbarbershop.databinding.FragmentStaffListBinding
 import ru.int24.ownbarbershop.di.App
@@ -17,6 +17,7 @@ import ru.int24.ownbarbershop.fragments.viewmodels.VMStaffListFragment
 import ru.int24.ownbarbershop.models.domen.DomStaff
 import ru.int24.ownbarbershop.routers.CommonRouter
 import ru.int24.ownbarbershop.utilits.ProgressIndicator
+import ru.int24.ownbarbershop.utilits.initBaseRules
 import javax.inject.Inject
 
 class StaffListFragment : Fragment() {
@@ -42,23 +43,25 @@ class StaffListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        vmStaffListFragment.getStaffVM().observe(viewLifecycleOwner, { staffAdapter.refreshAdapter(it)})
-        vmStaffListFragment.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idStaffLoader)})
-        vmStaffListFragment.isErrorMessage.observe(viewLifecycleOwner){ router.routeListStaffToErrorScreen(it)}
-
-        (activity as InterfaceArrowBack).hideShowArrowBack(false)
-        (activity as InterfaceArrowBack).handlerOnClick(){router.routeListStaffScreenToOrderScreen()}
-        hideBottomNavView()
+        initObservers()
+        initBaseRules(router, activity as MainActivity)
         showListStaff()
         attachListener()
+    }
+
+    private fun initObservers() {
+        vmStaffListFragment.getStaffVM().observe(viewLifecycleOwner, { staffAdapter.refreshAdapter(it)})
+        vmStaffListFragment.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idStaffLoader)})
+        vmStaffListFragment.isErrorMessage.observe(viewLifecycleOwner){ router.routeThisFragmentToErrorScreen(it,
+                R.id.action_staffListFragment_to_errorFragment)}
+
     }
 
     private fun attachListener() {
         staffAdapter.attachCallBack(object : InterfaceStaffAdapter{
             override fun chooseStaff(item: DomStaff) {
                 vmStaffListFragment.addStaffToDBVM(item)
-                router.routeListStaffScreenToOrderScreen()
+                router.routeFragmentUp()
             }
 
             override fun showInfo(item: DomStaff) {
@@ -71,11 +74,6 @@ class StaffListFragment : Fragment() {
         vmStaffListFragment.getStaffFromNetVM()
         binding.idRcStaff.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.idRcStaff.adapter = staffAdapter
-    }
-
-
-    fun hideBottomNavView(){
-        (activity as HideShowBottomNavView).hideBottomNavView()
     }
 
     override fun onDestroyView() {

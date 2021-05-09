@@ -40,5 +40,22 @@ interface AppComponent {
     fun inject (authFragment: AuthFragment)
     fun inject (vmProfileFragment: VMProfileFragment)
     fun inject (profileFragment: ProfileFragment)
+    fun inject (cardsLoyaltyFragment: CardsLoyaltyFragment)
+    fun inject (certificateFragment: CertificateFragment)
+    fun inject (personFragment: PersonFragment)
+    fun inject (vmCardsLoyaltyFragment: VMCardsLoyaltyFragment)
+    fun inject (vmCertificateFragment: VMCertificateFragment)
+    fun inject (vmPersonFragment: VMPersonFragment)
+    fun inject (subscriptionFragment: SubscriptionFragment)
+    fun inject (vmSubscriptionFragment: VMSubscriptionFragment)
+    fun inject (createOrderFragment: CreateOrderFragment)
+    fun inject (vmCreateOrderFragment: VMCreateOrderFragment)
+    fun inject (recordsFragment: RecordsFragment)
+    fun inject (vmRecordsFrsgment: VMRecordsFrsgment)
+    fun inject (futureRecordsFragment: FutureRecordsFragment)
+    fun inject (pastRecordsFragment: PastRecordsFragment)
+    fun inject (vmFutureRecordsFragment: VMFutureRecordsFragment)
+    fun inject (vmPastRecordsFragment: VMPastRecordsFragment)
+
 
 }

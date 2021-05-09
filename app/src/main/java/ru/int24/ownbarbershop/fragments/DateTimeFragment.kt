@@ -9,9 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.datepicker.MaterialDatePicker
+import ru.int24.ownbarbershop.MainActivity
 import ru.int24.ownbarbershop.R
-import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
-import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.UiInterface.InterfaceSessionAdapter
 import ru.int24.ownbarbershop.databinding.FragmentDateTimeBinding
 import ru.int24.ownbarbershop.di.App
@@ -22,6 +21,7 @@ import ru.int24.ownbarbershop.routers.CommonRouter
 import ru.int24.ownbarbershop.utilits.GetDataFormat
 import ru.int24.ownbarbershop.utilits.GetMaterialDatePicker
 import ru.int24.ownbarbershop.utilits.ProgressIndicator
+import ru.int24.ownbarbershop.utilits.initBaseRules
 import java.util.*
 import javax.inject.Inject
 
@@ -45,19 +45,24 @@ class DateTimeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBaseRules()
+        initBaseRules(router, activity as MainActivity)
+        initObservers()
+
+        vmDateTimeFragment.getAvailableWorkdaysFromNet()
+    }
+
+    private fun initObservers() {
         vmDateTimeFragment.getListWorkDaysVM().observe(viewLifecycleOwner, {createDatePicker(it)})
         vmDateTimeFragment.isLoading.observe(viewLifecycleOwner, { ProgressIndicator.showHideProgress(it, binding.idTimeLoader)})
-        vmDateTimeFragment.isErrorMessage.observe(viewLifecycleOwner, {router.routeDateTimeFragmentToErrorScreen(it)})
+        vmDateTimeFragment.isErrorMessage.observe(viewLifecycleOwner, {router.routeThisFragmentToErrorScreen(it, R.id.action_dateTimeFragment_to_errorFragment)})
         vmDateTimeFragment.getListSessionTimeVM().observe(viewLifecycleOwner, { showListSessionTime(it)})
-        vmDateTimeFragment.getAvailableWorkdaysFromNet()
     }
 
     private fun attachSessionAdapterClickListener() {
         sessionAdapter.attachHadlerClickItem(object: InterfaceSessionAdapter{
             override fun handlerChooseSessionTime(sessionTime: DomSession) {
                 vmDateTimeFragment.addSesionVM(sessionTime.datetime.replaceAfter("+", GetDataFormat.getCurrentOffset()))
-                router.routeDateTimeScreenToOrderScreen()
+                router.routeFragmentUp()
             }
         })
     }
@@ -79,14 +84,8 @@ class DateTimeFragment : Fragment() {
     fun createDatePicker(listWorkDays: List<String>){
         datePicker = GetMaterialDatePicker.getMaterialDatePicker(getString(R.string.text_chose_date_session), listWorkDays)
         datePicker.addOnPositiveButtonClickListener { handlerChooseDateFromDatePicker(it) }
-        datePicker.addOnNegativeButtonClickListener { router.routeDateTimeScreenToOrderScreen() }
+        datePicker.addOnNegativeButtonClickListener { router.routeFragmentUp() }
         datePicker.show(childFragmentManager, "Tag")
-    }
-
-    fun initBaseRules(){
-        (activity as InterfaceArrowBack).hideShowArrowBack(false)
-        (activity as InterfaceArrowBack).handlerOnClick { router.routeDateTimeScreenToOrderScreen() }
-        (activity as HideShowBottomNavView).hideBottomNavView()
     }
 
     override fun onDestroy() {

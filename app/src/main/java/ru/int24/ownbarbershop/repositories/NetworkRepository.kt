@@ -1,5 +1,9 @@
 package ru.int24.ownbarbershop.repositories
 
+import ru.int24.ownbarbershop.models.data.RequestAuthNet
+import ru.int24.ownbarbershop.models.data.RequestRecordNet
+import ru.int24.ownbarbershop.models.data.RequestSMSCodeNet
+import ru.int24.ownbarbershop.models.data.RespSMSCodeNet
 import ru.int24.ownbarbershop.models.domen.*
 import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
 
@@ -13,4 +17,11 @@ interface NetworkRepository {
 
     suspend fun getWorkDays(paramForWorkDays: ParamForWorkDays, emitter: RemoteErrorEmitter): List<String>?
 
+    suspend fun getSMSCode(paramGetSMS: ParamGetSMS, postBody:RequestSMSCodeNet, emitter: RemoteErrorEmitter): RespSMSCodeNet?
+
+    suspend fun getAuthUser(postBody: RequestAuthNet, emitter: RemoteErrorEmitter): DomUserAuth?
+
+    suspend fun createUserOrder(paramForRecord: ParamForRecord, postBody: RequestRecordNet, emitter: RemoteErrorEmitter): ArrayList<DomRespOrder>?
+
+    suspend fun getUserRecords(emitter: RemoteErrorEmitter):ArrayList<DomRecords>?
 }

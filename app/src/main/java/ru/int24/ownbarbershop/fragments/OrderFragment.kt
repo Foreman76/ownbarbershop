@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ru.int24.ownbarbershop.MainActivity
 import ru.int24.ownbarbershop.R
-import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
 import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
+import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.databinding.FragmentOrderBinding
 import ru.int24.ownbarbershop.di.App
 import ru.int24.ownbarbershop.fragments.viewmodels.ViewModelOrderFragment
 import ru.int24.ownbarbershop.models.domen.DomServices
 import ru.int24.ownbarbershop.models.domen.DomStaff
 import ru.int24.ownbarbershop.routers.CommonRouter
+import ru.int24.ownbarbershop.utilits.initBaseRulesMain
 import ru.int24.ownbarbershop.utilits.onBindingService
 import ru.int24.ownbarbershop.utilits.onBindingSession
 import ru.int24.ownbarbershop.utilits.onBindingStaff
@@ -44,24 +46,31 @@ class OrderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as BarberToolBar).setToolBarTitle(getString(R.string.title_order))
 
+        initObservers()
+        initSetOnClickListener()
+        initBaseRulesMain(activity as MainActivity)
+        vmOrderFragment.getServiceFromDBVM()
+        vmOrderFragment.getStaffFromDBVM()
+        vmOrderFragment.getSessionFromDBVM()
+
+    }
+
+    private fun initObservers() {
         vmOrderFragment.getServiceFromVM().observe(viewLifecycleOwner, {showService(it)})
         vmOrderFragment.getStaffVM().observe(viewLifecycleOwner, {showStaff(it)})
         vmOrderFragment.getSessionFromVM().observe(viewLifecycleOwner, {showSession(it)})
+    }
 
+    private fun initSetOnClickListener() {
         binding.idService.setOnClickListener{ routeOrderScreenToListServiceScreen() }
         binding.idStaff.setOnClickListener { routeOrderScreenToListStaffScreen() }
         binding.idTime.setOnClickListener { routeOrderScreenToDateTimeScreen() }
+        binding.idOrderVisitBtn.setOnClickListener { router.routeThisFragmentToAnyFragment(R.id.action_orderFragment_to_createOrderFragment) }
 
 
         binding.idServiceIconDelete.setOnClickListener { deleteService() }
         binding.idStuffIconDelete.setOnClickListener { deleteStaff() }
         binding.idTimeIconDelete.setOnClickListener { deleteSession() }
-        showBottomNavView()
-        hideImageArrowBack()
-        vmOrderFragment.getServiceFromDBVM()
-        vmOrderFragment.getStaffFromDBVM()
-        vmOrderFragment.getSessionFromDBVM()
-
     }
 
     private fun deleteSession() {
@@ -74,7 +83,7 @@ class OrderFragment : Fragment() {
 
     private fun routeOrderScreenToDateTimeScreen() {
         deleteSession()
-        router.routeOrderScreenToDateTimeScreen()
+        router.routeThisFragmentToAnyFragment(R.id.action_orderFragment_to_dateTimeFragment)
     }
 
     private fun hideImageArrowBack() {
@@ -83,12 +92,12 @@ class OrderFragment : Fragment() {
 
     private fun routeOrderScreenToListStaffScreen() {
         deleteStaff()
-        router.routeOrderScreenToListStaffScreen()
+        router.routeThisFragmentToAnyFragment(R.id.action_orderFragment_to_staffListFragment)
     }
 
     private fun routeOrderScreenToListServiceScreen() {
         deleteService()
-        router.routeOrderScreenToListServiceScreen()
+        router.routeThisFragmentToAnyFragment(R.id.action_orderFragment_to_listServiceFragment)
     }
 
     private fun showStaff(staff: DomStaff?) {

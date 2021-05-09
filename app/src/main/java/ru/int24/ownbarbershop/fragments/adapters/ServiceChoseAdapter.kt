@@ -42,6 +42,11 @@ class ServiceChoseAdapter: RecyclerView.Adapter<ServiceChoseAdapter.ChoseService
 
     fun getCountData():Int = choseService.size
 
+    fun clearAdapter(){
+        this.choseService.clear()
+        notifyDataSetChanged()
+    }
+
     fun refreshAdapter(lService: MutableList<DomServices>?){
         when(lService){
             is MutableList<DomServices> -> {

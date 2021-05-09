@@ -40,6 +40,10 @@ class RequestParameters {
             }
             return ParamForWorkDays(staff_id = idStaff, companyid = DefConfig.id, service_ids = serviceIds)
         }
+
+        fun makeParametersForGetSMSCode(): ParamGetSMS{
+            return ParamGetSMS(companyid = DefConfig.id)
+        }
     }
 
 }
