@@ -8,7 +8,6 @@ data class DomRecords(
         val date :String,
         val datetime:String,
         val deleted:Boolean,
-        val currency_short_title:String
 )
 
 data class DomRecordServices(
@@ -26,7 +25,8 @@ data class DomRecordCompany(
         val phone:String,
         val coordinate_lat:Float,
         val coordinate_lng:Float,
-        val site:String
+        val site:String,
+        val currency_short_title:String
 )
 
 data class DomRecordStaff(

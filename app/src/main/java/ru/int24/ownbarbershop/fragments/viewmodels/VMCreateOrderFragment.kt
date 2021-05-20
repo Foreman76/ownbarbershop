@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.config.DefConfig
 import ru.int24.ownbarbershop.models.data.OrderAppointments
 import ru.int24.ownbarbershop.models.data.RequestRecordNet
@@ -26,6 +27,11 @@ class VMCreateOrderFragment @Inject constructor(private val networkRepositoryImp
 
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading:LiveData<Boolean> = _isLoading
+    private val _isErrorMsg: MutableLiveData<String> = MutableLiveData()
+    val isErrorMsg:LiveData<String> = _isErrorMsg
+
+    private val _isErrorOrder: MutableLiveData<Boolean> = MutableLiveData()
+    val isErrorOrder: LiveData<Boolean> = _isErrorOrder
 
 
 
@@ -46,10 +52,13 @@ class VMCreateOrderFragment @Inject constructor(private val networkRepositoryImp
                                     code = requestSettings.smsCode,
                                     notify_by_sms = 1)
             val resp = networkRepositoryImpl.createUserOrder(ParamForRecord(companyid = DefConfig.id), requestRecordNet, this@VMCreateOrderFragment)
-            if (resp?.count() == 0){
-                //Ошибка скорее всего время уже занято
-
-                // TODO: 09.05.2021
+            if (resp.isNullOrEmpty()){
+                _isErrorOrder.value = true
+            }else {
+                _isErrorOrder.value = false
+                usesCaseBaseRepositoryImpl.deleteAllSession()
+                usesCaseBaseRepositoryImpl.deleteAllStaff()
+                usesCaseBaseRepositoryImpl.deleteServices(requestService)
             }
             _isLoading.value = false
         }
@@ -73,11 +82,11 @@ class VMCreateOrderFragment @Inject constructor(private val networkRepositoryImp
     }
 
     override fun onError(msg: String) {
-        TODO("Not yet implemented")
+        _isErrorMsg.value = msg
     }
 
     override fun onError(errorType: ErrorType) {
-        TODO("Not yet implemented")
+       _isErrorMsg.value = getResource.getString(R.string.text_error_network)
     }
 
 }

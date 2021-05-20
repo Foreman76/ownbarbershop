@@ -30,6 +30,11 @@ class GetDataFormat {
             val offset = dateFormat.format(currentLocalTime)
             return offset.removePrefix("+")
         }
+
+        fun getDateFromString(datetime:String):Date? {
+            val sdf = getOutputDateFormate("yyyy-MM-dd'T'HH:mm:ssZ")
+            return sdf.parse(datetime)
+        }
     }
 
 

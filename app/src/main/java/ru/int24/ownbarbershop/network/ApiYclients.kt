@@ -50,7 +50,7 @@ interface ApiYclients {
                                 @Body requestRecord: RequestRecordNet): Response<RespOrderNet>
 
     @GET("/api/v1/user/records/")
-    suspend fun getUserRecords(@HeaderMap headers: Map<String, String>):Response<ArrayList<RecordsNet>>
+    suspend fun getUserRecords(@HeaderMap headers: Map<String, String>):Response<RecordsNet>
 
 }
 

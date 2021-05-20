@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import ru.int24.ownbarbershop.MainActivity
 import ru.int24.ownbarbershop.R
 import ru.int24.ownbarbershop.UiInterface.BarberToolBar
-import ru.int24.ownbarbershop.UiInterface.HideShowBottomNavView
 import ru.int24.ownbarbershop.UiInterface.InterfaceArrowBack
 import ru.int24.ownbarbershop.databinding.FragmentOrderBinding
 import ru.int24.ownbarbershop.di.App
@@ -79,6 +78,7 @@ class OrderFragment : Fragment() {
 
     private fun showSession(stringDate: String) {
         this.onBindingSession(stringDate, binding)
+        showOrderVisitBtn()
     }
 
     private fun routeOrderScreenToDateTimeScreen() {
@@ -102,6 +102,7 @@ class OrderFragment : Fragment() {
 
     private fun showStaff(staff: DomStaff?) {
       this.onBindingStaff(staff, binding)
+        showOrderVisitBtn()
     }
 
     private fun deleteService() {
@@ -114,10 +115,15 @@ class OrderFragment : Fragment() {
 
     fun showService(listService: MutableList<DomServices>){
         this.onBindingService(listService, binding)
+        showOrderVisitBtn()
+
     }
 
-    fun showBottomNavView(){
-        (activity as HideShowBottomNavView).showBottomNavView()
+    fun showOrderVisitBtn(){
+        if (binding.idStuffIconDelete.visibility == View.VISIBLE && binding.idTimeIconDelete.visibility == View.VISIBLE
+            && binding.idServiceIconDelete.visibility == View.VISIBLE){
+            binding.idOrderVisitBtn.visibility = View.VISIBLE
+        }else { binding.idOrderVisitBtn.visibility = View.GONE}
     }
 
     override fun onDestroyView() {

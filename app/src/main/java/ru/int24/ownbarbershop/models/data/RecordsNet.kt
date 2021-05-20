@@ -1,18 +1,28 @@
 package ru.int24.ownbarbershop.models.data
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class RecordsNet(
+
+        @SerializedName("success")
+        val success : Boolean,
+
+        @SerializedName("data")
+        @Expose
+        val data : ArrayList<DataRecordsNet>
+)
+
+data class DataRecordsNet(
         @SerializedName("id") val id: Int,
         @SerializedName("services") val services: ArrayList<RecordServices>,
         @SerializedName("company") val company: RecordCompany,
         @SerializedName("staff") val staff: RecordStaff,
         @SerializedName("date") val date :String,
         @SerializedName("datetime") val datetime:String,
-        @SerializedName("deleted") val deleted:Boolean,
-        @SerializedName("currency_short_title") val currency_short_title:String
-)
+        @SerializedName("deleted") val deleted:Boolean
 
+)
 
 data class RecordServices(
         @SerializedName("id") val id:Int,
@@ -29,7 +39,8 @@ data class RecordCompany(
         @SerializedName("phone") val phone:String,
         @SerializedName("coordinate_lat") val coordinate_lat:Float,
         @SerializedName("coordinate_lng") val coordinate_lng:Float,
-        @SerializedName("site") val site:String
+        @SerializedName("site") val site:String,
+        @SerializedName("currency_short_title") val currency_short_title:String
 )
 
 data class RecordStaff(

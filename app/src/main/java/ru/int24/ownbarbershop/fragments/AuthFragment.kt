@@ -98,6 +98,7 @@ class AuthFragment : Fragment() {
     private fun showViewEnterSMSCode(show: Boolean?) {
         show?.let {
             binding.enterSmsCode.visibility = View.VISIBLE
+            binding.textPhoneNumber.text = binding.textInputEditTextPhone.text
             binding.authGetSmsCode.visibility = View.GONE
             binding.textInputLayoutPhone.visibility = View.GONE
             binding.textInputLayoutUserName.visibility = View.GONE

@@ -11,6 +11,7 @@ import ru.int24.ownbarbershop.network.ApiYclients
 import ru.int24.ownbarbershop.network.getHeaders
 import ru.int24.ownbarbershop.utilits.NetworkUtility
 import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
+import ru.int24.ownbarbershop.utilits.TypeRecord
 import ru.int24.ownbarbershop.utilits.toDomModel
 import javax.inject.Inject
 
@@ -71,10 +72,10 @@ class NetworkRepositoryImpl @Inject constructor(private val api: ApiYclients): N
         return resp?.body()?.toDomModel()
     }
 
-    override suspend fun getUserRecords(emitter: RemoteErrorEmitter): ArrayList<DomRecords>? {
+    override suspend fun getUserRecords(typeRecord:TypeRecord, emitter: RemoteErrorEmitter): ArrayList<DomRecords>? {
         val headers = getHeaders(true)
         val resp = withContext(Dispatchers.Main){safeApiCall(emitter = emitter){api.getUserRecords(headers = headers)} }
-        return resp?.body()?.mapTo(arrayListOf(), {it.toDomModel()})
+        return resp?.body()?.toDomModel(typeRecord)
     }
 
 }

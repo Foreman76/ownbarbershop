@@ -97,7 +97,7 @@
             android:id="@+id/text_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+7(908)0141376"
+            tools:text="@tools:sample/us_phones"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center"

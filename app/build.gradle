@@ -102,6 +102,9 @@ dependencies {
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    // Gif animation
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

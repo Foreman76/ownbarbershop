@@ -15,7 +15,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentInfoBinding.bind(view)
-//        loadGifAnimation()
+
 
 
     }
@@ -24,12 +24,5 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         fun getInstance(): InfoFragment = InfoFragment()
     }
 
-    fun loadGifAnimation(){
-//        Glide.with(requireContext())
-//                .asGif()
-//                .load(R.raw.own_animation)
-//                .centerCrop()
-//                .into(binding.gifInfoLogo)
-
-    }
 }
+

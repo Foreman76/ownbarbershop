@@ -199,7 +199,8 @@
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/id_service">
+                app:layout_constraintTop_toBottomOf="@id/id_service"
+                app:layout_constraintBottom_toTopOf="@+id/id_order_ordermore">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -284,7 +285,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/id_time" />
+                app:layout_constraintTop_toBottomOf="@id/id_time"
+                android:visibility="gone"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/id_order_visit_btn"
@@ -298,7 +300,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/id_order_ordermore" />
+                app:layout_constraintTop_toBottomOf="@id/id_order_ordermore"
+                android:visibility="gone"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

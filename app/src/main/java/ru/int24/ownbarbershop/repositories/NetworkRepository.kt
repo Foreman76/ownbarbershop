@@ -6,6 +6,7 @@ import ru.int24.ownbarbershop.models.data.RequestSMSCodeNet
 import ru.int24.ownbarbershop.models.data.RespSMSCodeNet
 import ru.int24.ownbarbershop.models.domen.*
 import ru.int24.ownbarbershop.utilits.RemoteErrorEmitter
+import ru.int24.ownbarbershop.utilits.TypeRecord
 
 interface NetworkRepository {
 
@@ -23,5 +24,5 @@ interface NetworkRepository {
 
     suspend fun createUserOrder(paramForRecord: ParamForRecord, postBody: RequestRecordNet, emitter: RemoteErrorEmitter): ArrayList<DomRespOrder>?
 
-    suspend fun getUserRecords(emitter: RemoteErrorEmitter):ArrayList<DomRecords>?
+    suspend fun getUserRecords(typeRecord: TypeRecord, emitter: RemoteErrorEmitter):ArrayList<DomRecords>?
 }

@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.InfoFragment">
 
-
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gif_info_logo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/barberPrimaryVariant1"
         android:padding="8dp"
+        android:src="@drawable/own_animation"
+        android:scaleType="centerCrop"
+        android:background="@color/barberPrimaryVariant1"
         app:layout_constraintBottom_toTopOf="@id/our_info_slogan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -48,7 +48,7 @@ class DetailStaffFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as BarberToolBar).setToolBarTitle(getString(R.string.text_detail_Staff_fragment))
          binding.idBarberName.text = staff.name
-         binding.idBarberDescrption.text = getString(R.string.lorem_test)
+         binding.idBarberDescrption.text = staff.information
          myPicasso.load(staff.avatar).placeholder(R.drawable.placeholder_avatar).into(binding.idImageAvatar)
 
        initBaseRules(router, activity as MainActivity)

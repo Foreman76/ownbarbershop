@@ -59,6 +59,8 @@
     <string name="text_subscription_frozen">Абонемент заморожен</string>
     <string name="text_subscription_not_freeze">Действует</string>
     <string name="text_period_availability">\"Период действия \"</string>
+    <string name="text_error_try_create_order">Возможность Записи на это время отсутствует</string>
+    <string name="text_ok_create_order">Вы успешно записаны</string>
 </resources>
 
 

@@ -20,13 +20,13 @@ class RecordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         fun bind(item:DomRecords){
 
             val listService = getListService(item.services)
-            val totalCost = "Стоимость:     ${getTotalCoast(item.services).toString()}"
+            val totalCost = "Стоимость:     ${getTotalCoast(item.services).toString()} ${item.company.currency_short_title}"
 
             binding.idRecordNameCompany.text = item.company.title
             binding.idRecordDatetime.text = GetDataFormat.getUserFormatStringDateFromStringDate(
                     "yyyy-MM-dd'T'HH:mm:ssZ",
                     "dd MMMM yyyy HH:mm",
-                    item.datetime)
+                    item.datetime.replaceAfter("+", GetDataFormat.getCurrentOffset()))
             binding.idRecordListServices.text = listService
             binding.idRecordCoastService.text = totalCost
             binding.idRecordPhone.text = item.company.phone
@@ -76,9 +76,13 @@ class RecordsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         return dataSet.count()
     }
 
-    fun refreshAdapter(data:ArrayList<DomRecords>){
-        dataSet.clear()
-        dataSet.addAll(data)
-        notifyDataSetChanged()
+    fun refreshAdapter(data:ArrayList<DomRecords>?){
+        data?.let {
+            dataSet.clear()
+            dataSet.addAll(it)
+            notifyDataSetChanged()
+        }
+
+
     }
 }
